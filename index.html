@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STNE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/chess.css">
+    <link rel="stylesheet" href="css/ctf.css">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <script src="js/index.js"></script>
+</head>
+<body>
+    <div id="contentContainer">
+        <div class="inlineContainers">
+            <div class="painel" id="uselessSpace"></div>
+            <div class="painel" id="resume">
+                <div class="content" id="contentresume">
+                    <p class="text" id="resume-text"></p>
+                    <p class="notice" id="resume-notice"></p>
+                    <div class="show" id="resume-show">
+                        <div class="show-option" id="re-coin">
+                            <div class="show-front" id="reshow-front"></div>
+                            <div class="show-back" id="reshow-verse"></div>
+                        </div>
+                    </div>
+                    <button onclick="window.location.replace('https:\/\/github.com/stone-payments/sre-platform');" class="btnNarrative" id="btnRedirect">Ir Para o Repositório <i class="fab fa-github btnIcon"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="inlineContainers">
+            <div class="painel" id="apresentation">
+                <div class="content" id="contentApresentation">
+                    <p class="text" id="apresentation-text"></p>
+                    <p class="notice" id="apresentation-notice"></p>
+                    <div class="show" id="apresentation-show">
+                        <div id="chess-board" onmousemove="Chess.move(event);">
+                            <div class="square sq-white" id="a8"></div>
+                            <div class="square sq-black" id="b8"></div>
+                            <div class="square sq-white" id="c8"></div>
+                            <div class="square sq-black" id="d8"></div>
+                            <div class="square sq-white" id="e8"></div>
+                            <div class="square sq-black" id="f8"></div>
+                            <div class="square sq-white" id="g8">
+                                <img src="img/king-bl.png" class="chess-piece" alt="" />
+                            </div>
+                            <div class="square sq-black" id="h8"></div>
+                            <div class="square sq-black" id="a7"></div>
+                            <div class="square sq-white" id="b7"></div>
+                            <div class="square sq-black" id="c7"></div>
+                            <div class="square sq-white" id="d7"></div>
+                            <div class="square sq-black" id="e7"></div>
+                            <div class="square sq-white" id="f7"></div>
+                            <div class="square sq-black" id="g7"></div>
+                            <div class="square sq-white" id="h7"></div>
+                            <div class="square sq-white" id="a6"></div>
+                            <div class="square sq-black" id="b6"></div>
+                            <div class="square sq-white" id="c6"></div>
+                            <div class="square sq-black" id="d6"></div>
+                            <div class="square sq-white" id="e6"></div>
+                            <div class="square sq-black" id="f6"></div>
+                            <div class="square sq-white" id="g6">
+                                <img src="img/king-wh.png" class="chess-piece turnToMove" id="whiteKing" alt="" />
+                            </div>
+                            <div class="square sq-black" id="h6"></div>
+                            <div class="square sq-black" id="a5"></div>
+                            <div class="square sq-white" id="b5">
+                                <img src="img/rook-bl.png" class="chess-piece" alt="" />
+                            </div>
+                            <div class="square sq-black" id="c5"></div>
+                            <div class="square sq-white" id="d5"></div>
+                            <div class="square sq-black" id="e5"></div>
+                            <div class="square sq-white" id="f5"></div>
+                            <div class="square sq-black" id="g5"></div>
+                            <div class="square sq-white" id="h5"></div>
+                            <div class="square sq-white" id="a4"></div>
+                            <div class="square sq-black" id="b4"></div>
+                            <div class="square sq-white" id="c4"></div>
+                            <div class="square sq-black" id="d4"></div>
+                            <div class="square sq-white" id="e4"></div>
+                            <div class="square sq-black" id="f4"></div>
+                            <div class="square sq-white" id="g4"></div>
+                            <div class="square sq-black" id="h4"></div>
+                            <div class="square sq-black" id="a3"></div>
+                            <div class="square sq-white" id="b3"></div>
+                            <div class="square sq-black" id="c3"></div>
+                            <div class="square sq-white" id="d3"></div>
+                            <div class="square sq-black" id="e3">
+                                <img src="img/rook-wh.png" class="chess-piece turnToMove" id="whiteRook" draggable="false" onmousedown="Chess.getPiece(this);" onmouseup="Chess.dropPiece(event);"/>
+                            </div>
+                            <div class="square sq-white" id="f3"></div>
+                            <div class="square sq-black" id="g3"></div>
+                            <div class="square sq-white" id="h3"></div>
+                            <div class="square sq-white" id="a2"></div>
+                            <div class="square sq-black" id="b2"></div>
+                            <div class="square sq-white" id="c2"></div>
+                            <div class="square sq-black" id="d2"></div>
+                            <div class="square sq-white" id="e2"></div>
+                            <div class="square sq-black" id="f2"></div>
+                            <div class="square sq-white" id="g2"></div>
+                            <div class="square sq-black" id="h2"></div>
+                            <div class="square sq-black" id="a1"></div>
+                            <div class="square sq-white" id="b1"></div>
+                            <div class="square sq-black" id="c1"></div>
+                            <div class="square sq-white" id="d1"></div>
+                            <div class="square sq-black" id="e1"></div>
+                            <div class="square sq-white" id="f1"></div>
+                            <div class="square sq-black" id="g1"></div>
+                            <div class="square sq-white" id="h1"></div>
+                        </div>
+                    </div>
+                    <div id="configuration">
+                        <h1>Enable audio?</h1>
+                        <i class="fas fa-headphones"></i>
+                        <div id="ConfigurationButtons">
+                            <button class="confBtn" onclick="Music.enable(); Transition.settings();">Yes</button>
+                            <button class="confBtn" onclick="Transition.settings();">No</button>
+                        </div>
+                    </div>
+                        
+                    <button onclick="Transition.intro();" class="btnNarrative" id="btnStartApresentation">Hear...</button>
+                    <span class="task btnNarrative" id="task-chess">solve the puzzle or just <button onclick="Transition.techBeginning();">Move on</button></span>
+                </div>
+            </div>
+            <div class="painel" id="techBeginning">
+                <div class="content" id="contentTechBeginning">
+                    <p class="text" id="techBeginning-text"></p>
+                    <p class="notice" id="techBeginning-notice"></p>
+                    <div class="show" id="techBeginning-show">
+                        <div id="ctf">
+                            <div id="outputCTF"></div>
+                            <input type="text" id="secretCTF" placeholder="Type the KEY">
+                            <span class="task btnNarrative" id="task-ctf">solve the puzzle or just <button onclick="Transition.actually();">Move on</button></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
