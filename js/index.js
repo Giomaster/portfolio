@@ -14,10 +14,16 @@ var taskProps = {
         piece: null,
         moving: false,
         dimension: 0
+    },
+    morse: {
+        solved: false,
+        delay: 150,
+        dot: 300,
+        dash: 750
     }
 }
 
-window.onload = function() { Transition.techBeginning() }
+window.onload = function() { Chapter.settings() }
 
 class Chapter {
     static settings() {
@@ -57,16 +63,12 @@ class Chapter {
             ["I achieved several achievements, to the point of playing professionally representing my city", []],
         ]
 
-        Morse.message();
         typeWithStops(monologue, 40, 1, Animation.show, [[apresentation, task, btn]]);
         
         return false;
     }
 
     static techBeginning() {
-        const task = document.getElementById("task-ctf");
-        const btn = task.getElementsByTagName("button")[0];
-        const techBeginning = document.getElementById("techBeginning-show");
         const text = document.getElementById("techBeginning-text");
 
         text.style.fontWeight = "300";
@@ -79,8 +81,8 @@ class Chapter {
             ["And of course, there are some other competitions such as robotics that were between the podium as well.", []],
         ]
 
-        typeWithStops(monologue, 40, 2, Animation.show, [[techBeginning, task, btn]]);
-        
+        typeWithStops(monologue, 40, 2, Morse.run);
+
         return false;
     }
 
@@ -151,8 +153,12 @@ class Transition {
         const page = document.getElementById("contentContainer");
         Animation.reset();
         Animation.slide(page, "left");
-        Chapter.techBeginning();
-        // Music.next("fundamentals.mp3", 0, 60);
+        
+        sleep(500).then(() => (
+            Chapter.techBeginning()
+        ));
+        
+        Music.next("beginning.mp3", 0, 60);
 
         return false;
     }
@@ -251,7 +257,7 @@ class Chess {
     static dropPiece(e) {
         const piece = document.getElementById(taskProps.chess.piece);
         const correctSquare = document.getElementById('e8');
-        const coordinates = GetScreenCordinates(correctSquare);
+        const coordinates = getScreenCordinates(correctSquare);
 
         if (
             e.pageX >= coordinates.x && 
@@ -288,47 +294,76 @@ class Chess {
 class Morse {
     static async dot() {
         const output = document.getElementById('outputCTF');
-        setTimeout(() => {
+        await sleep(taskProps.morse.delay).then(() => {
             output.style.backgroundColor = '#96ff9b';
-        }, 150);
-        
+        });
 
-        setTimeout(() => {
+        await sleep(taskProps.morse.dot).then(() => {
             output.style.backgroundColor = '#EFEFEF';
-        }, 150);
+        })
+        console.log('dot');
     }
 
     static async dash() {
         const output = document.getElementById('outputCTF');
-        setTimeout(() => {
+        await sleep(taskProps.morse.delay).then(() => {
             output.style.backgroundColor = '#96ff9b';
-        }, 150);
+        });
 
-        setTimeout(() => {
+        await sleep(taskProps.morse.dash).then(() => {
             output.style.backgroundColor = '#EFEFEF';
-        }, 450);
+        })
+
+        console.log('dash');
+    }
+
+    static run() {
+        const task = document.getElementById("task-ctf");
+        const btn = task.getElementsByTagName("button")[0];
+        const techBeginning = document.getElementById("techBeginning-show");
+        
+        Animation.show([techBeginning, task, btn]);
+        Morse.message();
+
+        return false;
     }
 
     static async message() {
-        while (true) {
-            console.log('miau');
-            await this.dot();
-            await this.dash();
-            await this.dot();
-            await this.dot();
-
-            await this.dash();
-            await this.dash();
-            await this.dash();
-
-            await this.dot();
-            await this.dot();
-            await this.dot();
-            await this.dash();
-
-            await this.dot();
+        const msg = [
+            this.dot,
+            this.dash,
+            this.dot,
+            this.dot,
+            this.dash,
+            this.dash,
+            this.dash,   
+            this.dot,
+            this.dot,
+            this.dot,
+            this.dash,
+            this.dot,
+        ];
+        
+        
+        while (!taskProps.morse.solved) {
+            for (let index = 0; index < msg.length; index++) {
+                const func = msg[index];
+                await func();
+            }
+            await sleep(5000);              
         }
+        
     }
+
+    static key(input) {
+        if (input.toLowerCase() === 'love') {
+            taskProps.morse.solved = true;
+            solvePuzzle();
+            sleep(1800).then(() => {
+                Transition.resume();
+            });
+        }
+    } 
 }
 
 class Animation { 
@@ -453,7 +488,7 @@ function typping(text, velocity, index, func, args) {
     return false;
 }
 
-function typeWithStops(text, velocity, index, func, args) {
+function typeWithStops(text, velocity, index, func, args = null) {
     const textEle = document.getElementsByClassName("text")[index];
     const notice  = document.getElementsByClassName("notice")[index];
     const originVelocity = velocity;
@@ -536,7 +571,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function GetScreenCordinates(obj) {
+function getScreenCordinates(obj) {
     var p = {};
     p.x = obj.offsetLeft;
     p.y = obj.offsetTop;
