@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/chess.css">
     <link rel="stylesheet" href="css/ctf.css">
+    <link rel="stylesheet" href="css/flyblock.css">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <script src="js/index.js"></script>
 </head>
@@ -19,17 +20,27 @@
     <div id="contentContainer">
         <div class="inlineContainers">
             <div class="painel" id="uselessSpace"></div>
-            <div class="painel" id="resume">
-                <div class="content" id="contentresume">
-                    <p class="text" id="resume-text"></p>
-                    <p class="notice" id="resume-notice"></p>
-                    <div class="show" id="resume-show">
-                        <div class="show-option" id="re-coin">
-                            <div class="show-front" id="reshow-front"></div>
-                            <div class="show-back" id="reshow-verse"></div>
+            <div class="painel" id="actually">
+                <div class="content" id="contentactually">
+                    <p class="text" id="actually-text"></p>
+                    <p class="notice" id="actually-notice"></p>
+                    <div class="show" id="actually-show">
+                        <div id="fly-block">
+                            <div class="fb fb-up" id="fb1" onclick="Flyblock.trigger(this);">
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+                            <div class="fb fb-left" id="fb2" onclick="Flyblock.trigger(this);">
+                                <i class="fas fa-arrow-left"></i>
+                            </div>
+                            <div class="fb fb-right" id="fb3" onclick="Flyblock.trigger(this);">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                            <div class="fb fb-up" id="fb4" onclick="Flyblock.trigger(this);">
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
                         </div>
                     </div>
-                    <button onclick="window.location.replace('https:\/\/github.com/stone-payments/sre-platform');" class="btnNarrative" id="btnRedirect">Ir Para o Repositório <i class="fab fa-github btnIcon"></i></button>
+                    <span class="task btnNarrative" id="task-flyblock">solve the puzzle or just <button onclick="Transition.techBeginning();">Move on</button></span>
                 </div>
             </div>
         </div>

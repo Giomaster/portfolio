@@ -37,7 +37,7 @@ html {
 }
 #apresentation { background-color: #121212; }
 
-#resume {
+#actually {
   background: rgb(166,0,255);
   background: -moz-linear-gradient(45deg, rgba(166,0,255,1) 0%, rgba(25,0,168,1) 100%);
   background: -webkit-linear-gradient(45deg, rgba(166,0,255,1) 0%, rgba(25,0,168,1) 100%);

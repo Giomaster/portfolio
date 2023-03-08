@@ -20,6 +20,14 @@ var taskProps = {
         delay: 150,
         dot: 300,
         dash: 750
+    },
+    skyblock: {
+        block: {
+            fb1: {exist: true, obstacle: null},
+            fb2: {exist: true, obstacle: 'fb1'},
+            fb3: {exist: true, obstacle: 'fb4'},
+            fb4: {exist: true, obstacle: 'fb2'}
+        }
     }
 }
 
@@ -86,38 +94,27 @@ class Chapter {
         return false;
     }
 
-    static resume() {
-        const button = document.getElementById("btnRedirect");
-        const text = document.getElementById("resume-text");
+    static actually() {
+        const task = document.getElementById("task-flyblock");
+        const btn = task.getElementsByTagName("button")[0];
+        const text = document.getElementById("actually-text");
+        const actually = document.getElementById("actually-show");
 
         text.style.fontWeight = "300";
 
-        const contentShow = {
-            "crossplane": "<ul class='listElements'><li><a href='https://crossplane.io/docs/v1.6/' target='_blank'>Documentação Oficial Crossplane</a></li><li><a href='https://stonepayments.atlassian.net/l/c/d380qY1M' target='_blank'>Crossplane for dummies</a></li></ul>",
-            "kubernetes": "<ul class='listElements'><li><a href='https://kubernetes.io/docs/tutorials/kubernetes-basics/' target='_blank'>Tutorial: Básico do Kubernetes</a></li><li><a href='https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/' target='_blank'>Kubernetes Docs: Custom Resources</a></li></ul>",
-            "gcp": "<ul class='listElements'><li><a href='https://cloud.google.com/gcp/getting-started' target='_blank'>Google Cloud Console: Getting Started</a></li></ul>",
-            "study": "gif:img/study.gif",
-            "thanks": "gif:img/thanks.gif",
-            "friend": "gif:img/partner.gif",
-            "bye": "gif:img/bye.gif",
-        }
-
         const monologue = [
-            ["Para contribuir com a plataforma, tem que saber bastante sobre Crossplane, GO lang, Kubernetes e Cloud", []],
-            ["Sobre o Crossplane, é importante a leitura dessas documentações:", [[helper.insert, [contentShow["crossplane"], "normal", 0]]]],
-            ["É bom saber sobre kubernetes, principalmente sobre custom resources:", [[helper.insert, [contentShow["kubernetes"], "normal", 0]]]],
-            ["O cluster da plataform STNE está na GCP (Google Cloud Platform), portanto leia essas documentações também:", [[helper.insert, [contentShow["gcp"], "coin", 0]]]],
-            ["Não se preocupe se você não conseguiu acessar todas as documentações agora, você pode ter acesso a todos esses links no README", [[helper.insert, [contentShow["study"], "coin", 0]]]],
-            ["Bom, por enquanto é isso! Aprendendo tudo isso com as orientações das documentações mencionadas você poderá ajudar muito a gente", []],
-            ["E nunca se esqueça de se comunicar com a gente no canal do Slack! Estaremos sempre por lá para te ajudar e resolver qualquer dúvida!", []],
-            ["Eu agradeço muito pela sua atenção", [[helper.insert, [contentShow["thanks"], "coin", 0]]]],
-            ["Daqui em diante caminharemos essa jornada juntos", [[helper.insert, [contentShow["friend"], "coin", 0]]]],
-            ["Bom, está ficando tarde...", []],
-            ["Até mais!", [[helper.insert, [contentShow["bye"], "coin", 0]]]],
+            ["It was at the age of 17 that I started doing big projects", []],
+            ["I developed the startup system from end to end, the team for this was me and two interns", []],
+            ["I also developed something like an internal system to manage the products and services of an air conditioning company, as I literally did it myself so it was a coold experience.", []],
+            ["After that I started working at Stone Co. as a developer in the infrastructure area", []],
+            ["I'm learning a lot about... Infra as code, CI/CD, Kubernetes, Clouds, terraform, and so on", []],
+            ["But despite where I work, I will always be passionate about full stack development, or at least front-end development", []],
+            ["I cannot deny that I feel like a developer or engineer with very broad knowledge", []],
+            ["But of course I will always be willing to learn more", []],
+
         ]
 
-        typeWithStops(monologue, 60, 0, Animation.show, [button]);
-        
+        typeWithStops(monologue, 60, 0, Animation.show, [[actually, task, btn]]);
         return false;
     }
 }
@@ -154,21 +151,24 @@ class Transition {
         Animation.reset();
         Animation.slide(page, "left");
         
-        sleep(500).then(() => (
+        sleep(1400).then(() => (
             Chapter.techBeginning()
         ));
         
-        Music.next("beginning.mp3", 0, 60);
+        Music.next("beginning.mp3", 0, 90);
 
         return false;
     }
 
-    static resume() {
+    static actually() {
         const page = document.getElementById("contentContainer");
         Animation.reset();
         Animation.slide(page, "down");
-        Chapter.resume();
-        Music.next("end.mp3", 0, 60);
+        
+        sleep(1400).then(() => (
+            Chapter.actually()
+        ));
+        Music.next("actually.mp3", 0, 110);
 
         return false;
     }
@@ -360,7 +360,7 @@ class Morse {
             taskProps.morse.solved = true;
             solvePuzzle();
             sleep(1800).then(() => {
-                Transition.resume();
+                Transition.actually();
             });
         }
     } 
@@ -443,6 +443,105 @@ class Animation {
         });
 
         return false;
+    }
+}
+
+class Flyblock {
+    static trigger(ele) {
+        const direction = ele.classList[1];
+
+        if (this.collide(direction, ele)) {
+            return false;
+        }
+
+        switch (direction) {
+            case 'fb-up':
+                ele.style.top = `-${screen.width * 2}px`;
+                break;
+            case 'fb-left':
+                ele.style.left = `-${screen.width * 2}px`;
+                break;
+            case 'fb-right':
+                ele.style.left = `${screen.width * 2}px`;
+                break;
+        }
+
+        taskProps.skyblock.block[ele.id].exist = false;
+
+        for (const key in taskProps.skyblock.block) {
+            if (taskProps.skyblock.block[key].exist) {
+                return false
+            }
+        }
+
+        solvePuzzle();
+        // Transition.cv()
+        return false;
+    }
+
+    static collide(direction, ele) {
+        const obstacle = taskProps.skyblock.block[ele.id].obstacle;
+        if (obstacle === null) {
+            return false;
+        }
+
+        console.log(taskProps.skyblock.block[obstacle].exist);
+        if (!(taskProps.skyblock.block[obstacle].exist)) {
+            return false;
+        }
+        
+        const obj = document.getElementById(obstacle);
+        const coordinates = {
+            ele: {y: ele.offsetTop, x: ele.offsetLeft},
+            obj: {y: obj.offsetTop, x: obj.offsetLeft}
+        };
+        obj.style.transition = 'all 0.3s';
+        ele.style.transition = 'all 0.3s';
+        switch (direction) {
+            case 'fb-up':
+                ele.style.top = `${coordinates.ele.y - 5}px`
+                sleep(200).then(() => {
+                    obj.style.top = `${coordinates.obj.y - 20}px`;
+                })
+                sleep(500).then(() => {
+                    obj.style.top = `${coordinates.obj.y}px`;
+                })
+                sleep(800).then(() => {
+                    ele.style.top = `${coordinates.ele.y}px`;
+                })
+                break;
+            case 'fb-left':
+                ele.style.left = `${coordinates.ele.x - 5}px`
+                sleep(200).then(() => {
+                    obj.style.left = `${coordinates.obj.x - 20}px`;
+                })
+                sleep(500).then(() => {
+                    obj.style.left = `${coordinates.obj.x}px`;
+                })
+                sleep(800).then(() => {
+                    ele.style.left = `${coordinates.ele.x}px`;
+                })
+                break;
+        
+            case 'fb-right':
+                ele.style.left = `${coordinates.ele.x + 5}px`
+                sleep(200).then(() => {
+                    obj.style.left = `${coordinates.obj.x + 20}px`;
+                })
+                sleep(500).then(() => {
+                    obj.style.left = `${coordinates.obj.x}px`;
+                })
+                sleep(800).then(() => {
+                    ele.style.left = `${coordinates.ele.x}px`;
+                })
+                break;
+        }
+
+        sleep(1000).then(() => {
+            ele.removeAttribute('style');
+            obj.removeAttribute('style');
+        });
+        return true;
     }
 }
 

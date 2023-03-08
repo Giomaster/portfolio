@@ -1,0 +1,42 @@
+#fly-block {
+  width: 85vw;
+  height: 85vw;
+  max-height: 400px;
+  max-width: 400px;
+  position: relative;
+}
+
+.fb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 50%;
+  color: #FFF;
+  background-color: aquamarine;
+  border-radius: 8px;
+  position: absolute;
+  cursor: pointer;
+  font-size: 5rem;
+  transition: all 5s;
+}
+
+#fb1 {
+  top: 0;
+  left: 0;
+}
+
+#fb2 {
+  top: 0;
+  left: calc(50% + 5px);
+}
+
+#fb3 {
+  top: calc(50% + 5px);
+  left: 0;
+}
+
+#fb4 {
+  top: calc(50% + 5px);
+  left: calc(50% + 5px);
+}
