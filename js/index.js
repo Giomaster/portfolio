@@ -117,6 +117,10 @@ class Chapter {
         typeWithStops(monologue, 60, 0, Animation.show, [[actually, task, btn]]);
         return false;
     }
+
+    static cv() {
+
+    }
 }
 
 class Transition {
@@ -172,6 +176,8 @@ class Transition {
 
         return false;
     }
+
+    static 
 }
 
 class Music {
@@ -334,13 +340,16 @@ class Morse {
             this.dash,
             this.dot,
             this.dot,
+
             this.dash,
             this.dash,
-            this.dash,   
+            this.dash,
+
             this.dot,
             this.dot,
             this.dot,
             this.dash,
+
             this.dot,
         ];
         
@@ -356,8 +365,9 @@ class Morse {
     }
 
     static key(input) {
-        if (input.toLowerCase() === 'love') {
+        if (input.value.toLowerCase() === 'love') {
             taskProps.morse.solved = true;
+            input.disabled = true;
             solvePuzzle();
             sleep(1800).then(() => {
                 Transition.actually();
@@ -467,6 +477,7 @@ class Flyblock {
         }
 
         taskProps.skyblock.block[ele.id].exist = false;
+        ele.style.opacity = '0';
 
         for (const key in taskProps.skyblock.block) {
             if (taskProps.skyblock.block[key].exist) {

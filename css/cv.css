@@ -1,0 +1,254 @@
+/* Define variables  */
+@property --p {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+:root {
+  --desktop-w: 400px;
+  --desktop-space: 60px;
+
+  --initial-w: 300px;
+  --space: 50px
+}
+
+.k1 { --w: calc(var(--initial-w) - var(--space)); }
+.k2 { --w: calc(var(--initial-w) - (var(--space) * 2)); }
+.k3 { --w: calc(var(--initial-w) - (var(--space) * 3)); }
+.k4 { --w: calc(var(--initial-w) - (var(--space) * 4)); }
+
+#frontEnd .k1 { --c: #a3ffa3; --p:98; }
+#frontEnd .k2 { --c: #19de19; --p:92; }
+#frontEnd .k3 { --c: #0a8d0a; --p:89; }
+#frontEnd .k4 { --c: #025c02; --p:84; }
+#backEnd .k1 { --c: #F1959B; --p:94; }
+#backEnd .k2 { --c: #eb5f5a; --p:92; }
+#backEnd .k3 { --c: #c72721; --p:86; }
+#backEnd .k4 { --c: #8f0600; --p:74; }
+#devOps .k1 { --c: #fff19a; --p:65; }
+#devOps .k2 { --c: #ffe65c; --p:69; }
+#devOps .k3 { --c: #cbad1c; --p:58; }
+#devOps .k4 { --c: #8d750a; --p:73; }
+#misc .k1 { --c: #9dd1ff; --p:95; }
+#misc .k2 { --c: #53afff; --p:46; }
+#misc .k3 { --c: #206db1; --p:70; }
+#misc .k4 { --c: #00305a; --p:90; }
+
+#frontEnd .kl1 { background-color: #a3ffa3; }
+#frontEnd .kl2 { background-color: #19de19; }
+#frontEnd .kl3 { background-color: #0a8d0a; }
+#frontEnd .kl4 { background-color: #025c02; }
+#backEnd .kl1 { background-color: #F1959B; }
+#backEnd .kl2 { background-color: #eb5f5a; }
+#backEnd .kl3 { background-color: #c72721; }
+#backEnd .kl4 { background-color: #8f0600; }
+#devOps .kl1 { background-color: #fff19a; }
+#devOps .kl2 { background-color: #ffe65c; }
+#devOps .kl3 { background-color: #cbad1c; }
+#devOps .kl4 { background-color: #8d750a; }
+#misc .kl1 { background-color: #9dd1ff; }
+#misc .kl2 { background-color: #53afff; }
+#misc .kl3 { background-color: #206db1; }
+#misc .kl4 { background-color: #00305a; }
+
+/* End variables */
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Montserrat";
+}
+
+body {
+  background-color: #111;
+  color: #FFF;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px;
+}
+
+#cv-image {
+  border-radius: 50%;
+  max-width: 400px;
+  max-height: 400px;
+  min-width: 300px;
+  min-height: 300px;
+  width: 80vw;
+  height: 80vw;
+  object-fit: contain;
+}
+
+#cv-name {
+  margin-top: 20px;
+  font-size: 2.7rem;
+}
+
+#cv-description {
+  margin-top: 3px;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+#knowsPack {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-top: 30px;
+}
+
+.knowCard {
+  width: var(--initial-w);
+  max-width: var(--initial-w);
+  min-width: var(--initial-w);
+  background-color: #151515;
+  padding: 5px 0;
+  margin: 20px 20px 10px 0;
+  border-radius: 15px;
+}
+
+.graphs {
+  display: block;
+  position: relative;
+  width: var(--initial-w);
+  height: var(--initial-w);
+  max-width: var(--initial-w);
+  min-width: var(--initial-w);
+}
+
+.graphsInner {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.graph {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+}
+
+.pie {
+  --b:20px;
+  width:var(--w);
+  aspect-ratio:1;
+  position:relative;
+  display:inline-grid;
+  margin:5px;
+  place-content:center;
+  font-size:25px;
+  font-weight:bold;
+  font-family:sans-serif;
+  animation:p 1s .5s both;
+}
+
+.pie:before, .pie:after {
+  content:"";
+  position:absolute;
+  border-radius:50%;
+}
+
+.pie:before {
+  inset:0;
+  background:
+    radial-gradient(farthest-side,var(--c) 98%,#0000) top/var(--b) var(--b) no-repeat,
+    conic-gradient(var(--c) calc(var(--p)*1%),#0000 0);
+  -webkit-mask:radial-gradient(farthest-side,#0000 calc(99% - var(--b)),#000 calc(100% - var(--b)));
+          mask:radial-gradient(farthest-side,#0000 calc(99% - var(--b)),#000 calc(100% - var(--b)));
+}
+
+.pie:after {
+  inset:calc(50% - var(--b)/2);
+  background:var(--c);
+  transform:rotate(calc(var(--p)*3.6deg)) translateY(calc(50% - var(--w)/2));
+}
+
+.knowName {
+  text-align: center;
+  font-size: 1.4rem;
+  margin-top: 10px;
+}
+
+.knownLegends {
+  padding: 20px;
+}
+
+.knownLegend {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.knownLegend span {
+  margin-left: 10px;
+}
+
+.kl-dot {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+}
+
+@keyframes p {
+  from {--p:0}
+}
+
+@media only screen and (min-width: 1035px) {
+  .knowCard {
+    width: var(--desktop-w);
+    max-width: var(--desktop-w);
+    min-width: var(--desktop-w);
+  }
+  
+  .graphs {
+    width: var(--desktop-w);
+    height: var(--desktop-w);
+    max-width: var(--desktop-w);
+    min-width: var(--desktop-w);
+  }
+
+  .knowName {
+    font-size: 2rem;
+  }
+
+  .kl-dot {
+    width: 15px;
+    height: 15px;
+  }
+
+  .knownLegend {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    margin: 10px auto;
+  }
+
+  .k1 {--w: calc(var(--desktop-w) - (var(--desktop-space))); }
+  .k2 {--w: calc(var(--desktop-w) - (var(--desktop-space) * 2)); }
+  .k3 {--w: calc(var(--desktop-w) - (var(--desktop-space) * 3)); }
+  .k4 {--w: calc(var(--desktop-w) - (var(--desktop-space) * 4)); }
+  .pie { --b: 25px; }
+}
+
+body::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: #FFF1;        /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #FFF4;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 3px solid #FFF1;  /* creates padding around scroll thumb */
+}
