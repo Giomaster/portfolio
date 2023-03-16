@@ -119,7 +119,22 @@ class Chapter {
     }
 
     static cv() {
+        const thanku = document.getElementById('cv-thanku');
+        const text   = thanku.getElementsByTagName('h1')[0];
+        const content = document.getElementById("contentCV");
 
+        text.style.opacity = '1';
+        sleep(2000).then(() => {
+            text.style.opacity = '0';    
+        });
+
+        sleep(4000).then(() => {
+            thanku.style.opacity = '0'
+        });
+
+        sleep(4700).then(() => {
+            content.style.overflow = 'auto';
+        });
     }
 }
 
@@ -177,7 +192,21 @@ class Transition {
         return false;
     }
 
-    static 
+    static cv() {
+        const page = document.getElementById("contentContainer");
+        const content = document.getElementById("contentCV");
+        content.style.overflow = 'hidden';
+
+        Animation.reset();
+        Animation.slide(page, "left", 2);
+
+        sleep(5500).then(() => {
+            Chapter.cv();
+        });
+        
+        Music.next("cv.mp3", 0, 270);
+        return false;
+    }
 }
 
 class Music {
@@ -196,8 +225,12 @@ class Music {
             else { backtrack.volume = vol; }
         }, interval);
 
-        backtrack.play();
+        backtrack.addEventListener('ended', () => {
+            backtrack.currentTime = 0;
+            backtrack.play();
+        });
 
+        backtrack.play();
         return false;
     }
 
@@ -376,86 +409,6 @@ class Morse {
     } 
 }
 
-class Animation { 
-    static show(Elements) {
-        for (let index = 0; index < Elements.length; index++) {
-          const element = Elements[index];
-          
-          element.style.display = "flex";
-          sleep(100).then(() => {
-              element.style.opacity = 1;
-          });
-        }
-
-        return false;
-    }
-
-    static reset() {
-        const buttons = document.getElementsByTagName("button");
-        const texts    = document.getElementsByClassName("text");
-        rotateDeg = 0;
-
-        for (let index = 0; index < buttons.length; index++) {
-            buttons[index].style.display = "none";
-            buttons[index].style.opacity = 0;
-        }
-
-        for (let index = 0; index < texts.length; index++) {
-            texts[index].innerHTML = "";
-        }
-
-    }
-
-    static changeColors(id, color) {
-        const faded = document.createElement("div");
-        let painel = document.getElementById(id);
-
-        faded.setAttribute("class", "fadedEfem");
-        faded.style.background = window.getComputedStyle(painel).backgroundColor;
-
-        painel.appendChild(faded);
-        painel.style.background = color;
-        sleep(100).then(() => {
-            faded.style.opacity = 0;
-        });
-
-        sleep(900).then(() => {
-            faded.remove();
-        });
-
-        return false;
-    }
-
-    static slide(Element, direction) {
-        let time = 3;
-        Element.style.transition = `background-color 2.8s, margin-top ${time}s, margin-left ${time}s`;
-        switch (direction) {
-            case "right":
-                slideLeft += 100;
-                Element.style.marginLeft = `${slideLeft}vw`;
-                break;
-            case "down":
-                slideTop += 100;
-                Element.style.marginTop = `${slideTop}vh`;
-                break;
-            case "left":
-                slideLeft -= 100;
-                Element.style.marginLeft = `${slideLeft}vw`;
-                break;
-            default:
-                slideTop -= 100;
-                Element.style.marginTop = `${slideTop}vh`;
-                break;
-        }
-
-        sleep(time * 1000).then(() => {
-            Element.style.transition = "background-color 2.8s";
-        });
-
-        return false;
-    }
-}
-
 class Flyblock {
     static trigger(ele) {
         const direction = ele.classList[1];
@@ -486,7 +439,10 @@ class Flyblock {
         }
 
         solvePuzzle();
-        // Transition.cv()
+        sleep(2000).then(() => {
+            Transition.cv()
+        });
+
         return false;
     }
 
@@ -553,6 +509,91 @@ class Flyblock {
             obj.removeAttribute('style');
         });
         return true;
+    }
+}
+
+class Animation { 
+    static show(Elements) {
+        for (let index = 0; index < Elements.length; index++) {
+          const element = Elements[index];
+          
+          element.style.display = "flex";
+          sleep(100).then(() => {
+              element.style.opacity = 1;
+          });
+        }
+
+        return false;
+    }
+
+    static reset() {
+        const buttons = document.getElementsByTagName("button");
+        const texts    = document.getElementsByClassName("text");
+        rotateDeg = 0;
+
+        for (let index = 0; index < buttons.length; index++) {
+            if (buttons[index].classList.length > 0) {
+                if (buttons[index].classList[0] === 'btnMeet') {
+                    continue;
+                }
+            } 
+            
+            buttons[index].style.display = "none";
+            buttons[index].style.opacity = 0;
+        }
+
+        for (let index = 0; index < texts.length; index++) {
+            texts[index].innerHTML = "";
+        }
+
+    }
+
+    static changeColors(id, color) {
+        const faded = document.createElement("div");
+        let painel = document.getElementById(id);
+
+        faded.setAttribute("class", "fadedEfem");
+        faded.style.background = window.getComputedStyle(painel).backgroundColor;
+
+        painel.appendChild(faded);
+        painel.style.background = color;
+        sleep(100).then(() => {
+            faded.style.opacity = 0;
+        });
+
+        sleep(900).then(() => {
+            faded.remove();
+        });
+
+        return false;
+    }
+
+    static slide(Element, direction, frames = 1, time = 3 * frames) {
+        Element.style.transition = `background-color 2.8s, margin-top ${time}s, margin-left ${time}s`;
+        switch (direction) {
+            case "right":
+                slideLeft += 100 * frames;
+                Element.style.marginLeft = `${slideLeft}vw`;
+                break;
+            case "down":
+                slideTop += 100 * frames;
+                Element.style.marginTop = `${slideTop}vh`;
+                break;
+            case "left":
+                slideLeft -= 100 * frames;
+                Element.style.marginLeft = `${slideLeft}vw`;
+                break;
+            default:
+                slideTop -= 100 * frames;
+                Element.style.marginTop = `${slideTop}vh`;
+                break;
+        }
+
+        sleep(time * 1000).then(() => {
+            Element.style.transition = "background-color 2.8s";
+        });
+
+        return false;
     }
 }
 
@@ -649,7 +690,7 @@ function typeWithStops(text, velocity, index, func, args = null) {
               });
           }
 
-            notice.innerHTML = "Clique ou pressione 'enter' para continuar";
+            notice.innerHTML = "Click or press 'enter' to continue";
             notice.style.opacity = 1;
             waitingKeypress().then(() => {
 

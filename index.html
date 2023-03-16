@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/chess.css">
     <link rel="stylesheet" href="css/ctf.css">
     <link rel="stylesheet" href="css/flyblock.css">
+    <link rel="stylesheet" href="css/cv.css">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <script src="js/index.js"></script>
 </head>
@@ -40,173 +41,180 @@
                             </div>
                         </div>
                     </div>
-                    <span class="task btnNarrative" id="task-flyblock">solve the puzzle or just <button type="button" onclick="this.disabled = true; Transition.techBeginning();">Move on</button></span>
+                    <span class="task btnNarrative" id="task-flyblock">solve the puzzle or just <button type="button" onclick="this.disabled = true; Transition.cv();">Move on</button></span>
                 </div>
             </div>
             <div class="painel" id="cv-transition"></div>
-            <div class="painel" id="cv">
-                <div class="content" id="contentCV">
-                    <img src="me.png" alt="Giovanni Martins" id="cv-image" />
-                    <h2 id="cv-name">Giovanni Martins</h2>
-                    <div id="knowsPack">
-                        <div class="knowCard">
-                          <div class='front'>
-                            <h1 class='knowName'>Front-End</h1>
-                            <div class='graphs'>
-                              <div class='graphsInner'>
-                                <div class='graph'>
-                                  <div class='pie k1' id="p1"></div>
-                                </div>
-                                <div class='graph'>
-                                  <div class='pie k2' id="p2"></div>
-                                </div>
-                                <div class='graph'>
-                                  <div class='pie k3' id="p3"></div>
-                                </div>
-                                <div class='graph'>
-                                  <div class='pie k4' id="p4"></div>
-                                </div>
-                              </div>
+            <div class="page" id="contentCV">
+              <div id="cv-thanku">
+                <h1>Thank You!</h1>
+              </div>
+              <img src="img/me.png" alt="Giovanni Martins" id="cv-image" />
+              <h1 id="cv-name">Giovanni Martins</h1>
+              <p id="cv-description">Developer full Stack and DevOps, with some tricks that can make a difference</p>
+              <div id="knowsPack">
+                  <div class="knowCard" id="frontEnd">
+                    <div class='front'>
+                      <h1 class='knowName'>Front-End</h1>
+                      <div class='graphs'>
+                        <div class='graphsInner'>
+                          <div class='graph'>
+                            <div class='pie k1' id="p1"></div>
+                          </div>
+                          <div class='graph'>
+                            <div class='pie k2' id="p2"></div>
+                          </div>
+                          <div class='graph'>
+                            <div class='pie k3' id="p3"></div>
+                          </div>
+                          <div class='graph'>
+                            <div class='pie k4' id="p4"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class='knownLegends'>
+                        <div class='knownLegend'>
+                          <div class='kl-dot kl1'></div>
+                          <span>HTML/CSS - 98%</span>
+                        </div>
+                        <div class='knownLegend'>
+                          <div class='kl-dot kl2'></div>
+                          <span>Javascript - 92%</span>
+                        </div>
+                        <div class='knownLegend'>
+                          <div class='kl-dot kl3'></div>
+                          <span>React - 89%</span>
+                        </div>
+                        <div class='knownLegend'>
+                          <div class='kl-dot kl4'></div>
+                          <span>Django - 84%</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="knowCard" id="backEnd">
+                      <div class='front'>
+                        <h1 class='knowName'>Back-End</h1>
+                        <div class='graphs'>
+                          <div class='graphsInner'>
+                            <div class='graph'>
+                              <div class='pie k1' id="p5"></div>
                             </div>
-                            <div class='knownLegends'>
-                              <div class='knownLegend'>
-                                <div class='ml-dot ml1'></div>
-                                <span>HTML/CSS - 90%</span>
-                              </div>
-                              <div class='knownLegend'>
-                                <div class='ml-dot ml2'></div>
-                                <span>Javascript - 40%</span>
-                              </div>
-                              <div class='knownLegend'>
-                                <div class='ml-dot ml3'></div>
-                                <span>React - 70%</span>
-                              </div>
-                              <div class='knownLegend'>
-                                <div class='ml-dot ml4'></div>
-                                <span>Django - 80%</span>
-                              </div>
+                            <div class='graph'>
+                              <div class='pie k2' id="p6"></div>
+                            </div>
+                            <div class='graph'>
+                              <div class='pie k3' id="p7"></div>
+                            </div>
+                            <div class='graph'>
+                              <div class='pie k4' id="p8"></div>
                             </div>
                           </div>
                         </div>
-                        <div class="knowCard">
-                            <div class='front'>
-                              <h1 class='knowName'>Back-End</h1>
-                              <div class='graphs'>
-                                <div class='graphsInner'>
-                                  <div class='graph'>
-                                    <div class='pie k1' id="p1"></div>
-                                  </div>
-                                  <div class='graph'>
-                                    <div class='pie k2' id="p2"></div>
-                                  </div>
-                                  <div class='graph'>
-                                    <div class='pie k3' id="p3"></div>
-                                  </div>
-                                  <div class='graph'>
-                                    <div class='pie k4' id="p4"></div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class='knownLegends'>
-                                <div class='knownLegend'>
-                                  <div class='ml-dot ml1'></div>
-                                  <span>PHP - 90%</span>
-                                </div>
-                                <div class='knownLegend'>
-                                  <div class='ml-dot ml2'></div>
-                                  <span>Javascript - 40%</span>
-                                </div>
-                                <div class='knownLegend'>
-                                  <div class='ml-dot ml3'></div>
-                                  <span>Python - 70%</span>
-                                </div>
-                                <div class='knownLegend'>
-                                  <div class='ml-dot ml4'></div>
-                                  <span>GO - 80%</span>
-                                </div>
-                              </div>
-                            </div>
+                        <div class='knownLegends'>
+                          <div class='knownLegend'>
+                            <div class='kl-dot kl1'></div>
+                            <span>PHP - 94%</span>
                           </div>
-                          <div class="knowCard">
-                            <div class='front'>
-                              <h1 class='knowName'>DevOps</h1>
-                              <div class='graphs'>
-                                <div class='graphsInner'>
-                                  <div class='graph'>
-                                    <div class='pie k1' id="p1"></div>
-                                  </div>
-                                  <div class='graph'>
-                                    <div class='pie k2' id="p2"></div>
-                                  </div>
-                                  <div class='graph'>
-                                    <div class='pie k3' id="p3"></div>
-                                  </div>
-                                  <div class='graph'>
-                                    <div class='pie k4' id="p4"></div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class='knownLegends'>
-                                <div class='knownLegend'>
-                                  <div class='ml-dot ml1'></div>
-                                  <span>Kubernetes - 90%</span>
-                                </div>
-                                <div class='knownLegend'>
-                                  <div class='ml-dot ml2'></div>
-                                  <span>Ansible - 40%</span>
-                                </div>
-                                <div class='knownLegend'>
-                                  <div class='ml-dot ml3'></div>
-                                  <span>Terraform - 70%</span>
-                                </div>
-                                <div class='knownLegend'>
-                                  <div class='ml-dot ml4'></div>
-                                  <span>Crossplane - 80%</span>
-                                </div>
-                              </div>
-                            </div>
+                          <div class='knownLegend'>
+                            <div class='kl-dot kl2'></div>
+                            <span>Javascript - 92%</span>
                           </div>
-                          <div class="knowCard">
-                            <div class='front'>
-                              <h1 class='knowName'>Miscellaneous</h1>
-                              <div class='graphs'>
-                                <div class='graphsInner'>
-                                  <div class='graph'>
-                                    <div class='pie k1' id="p1"></div>
-                                  </div>
-                                  <div class='graph'>
-                                    <div class='pie k2' id="p2"></div>
-                                  </div>
-                                  <div class='graph'>
-                                    <div class='pie k3' id="p3"></div>
-                                  </div>
-                                  <div class='graph'>
-                                    <div class='pie k4' id="p4"></div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class='knownLegends'>
-                                <div class='knownLegend'>
-                                  <div class='ml-dot ml1'></div>
-                                  <span>Backstage - 90%</span>
-                                </div>
-                                <div class='knownLegend'>
-                                  <div class='ml-dot ml2'></div>
-                                  <span>Machine Learning - 40%</span>
-                                </div>
-                                <div class='knownLegend'>
-                                  <div class='ml-dot ml3'></div>
-                                  <span>Security - 70%</span>
-                                </div>
-                                <div class='knownLegend'>
-                                  <div class='ml-dot ml4'></div>
-                                  <span>GCP - 80%</span>
-                                </div>
-                              </div>
-                            </div>
+                          <div class='knownLegend'>
+                            <div class='kl-dot kl3'></div>
+                            <span>Python - 86%</span>
                           </div>
+                          <div class='knownLegend'>
+                            <div class='kl-dot kl4'></div>
+                            <span>GO - 74%</span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                </div>
+                    <div class="knowCard" id="devOps">
+                      <div class='front'>
+                        <h1 class='knowName'>DevOps</h1>
+                        <div class='graphs'>
+                          <div class='graphsInner'>
+                            <div class='graph'>
+                              <div class='pie k1' id="p9"></div>
+                            </div>
+                            <div class='graph'>
+                              <div class='pie k2' id="p10"></div>
+                            </div>
+                            <div class='graph'>
+                              <div class='pie k3' id="p11"></div>
+                            </div>
+                            <div class='graph'>
+                              <div class='pie k4' id="p12"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class='knownLegends'>
+                          <div class='knownLegend'>
+                            <div class='kl-dot kl1'></div>
+                            <span>Kubernetes - 65%</span>
+                          </div>
+                          <div class='knownLegend'>
+                            <div class='kl-dot kl2'></div>
+                            <span>Ansible - 69%</span>
+                          </div>
+                          <div class='knownLegend'>
+                            <div class='kl-dot kl3'></div>
+                            <span>Terraform - 58%</span>
+                          </div>
+                          <div class='knownLegend'>
+                            <div class='kl-dot kl4'></div>
+                            <span>Crossplane - 73%</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="knowCard" id="misc">
+                      <div class='front'>
+                        <h1 class='knowName'>Miscellaneous</h1>
+                        <div class='graphs'>
+                          <div class='graphsInner'>
+                            <div class='graph'>
+                              <div class='pie k1' id="p13"></div>
+                            </div>
+                            <div class='graph'>
+                              <div class='pie k2' id="p14"></div>
+                            </div>
+                            <div class='graph'>
+                              <div class='pie k3' id="p15"></div>
+                            </div>
+                            <div class='graph'>
+                              <div class='pie k4' id="p16"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class='knownLegends'>
+                          <div class='knownLegend'>
+                            <div class='kl-dot kl1'></div>
+                            <span>Backstage - 95%</span>
+                          </div>
+                          <div class='knownLegend'>
+                            <div class='kl-dot kl2'></div>
+                            <span>Machine Learning - 46%</span>
+                          </div>
+                          <div class='knownLegend'>
+                            <div class='kl-dot kl3'></div>
+                            <span>Security - 70%</span>
+                          </div>
+                          <div class='knownLegend'>
+                            <div class='kl-dot kl4'></div>
+                            <span>SQL - 90%</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+              <div id="contact">
+                <h1 id="contact-title">Contact me!</h1>
+                <button class="btnMeet" id="github-contact"><i class="fab fa-github"></i></button>
+                <button class="btnMeet" id="linkedin-contact"><i class="fab fa-linkedin-in"></i></button>
+              </div>
             </div>
         </div>
         <div class="inlineContainers">
