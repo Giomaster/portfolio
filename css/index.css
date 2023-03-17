@@ -37,14 +37,6 @@ html {
 }
 #apresentation { background-color: #121212; }
 
-#actually {
-  background: rgb(166,0,255);
-  background: -moz-linear-gradient(45deg, rgba(166,0,255,1) 0%, rgba(25,0,168,1) 100%);
-  background: -webkit-linear-gradient(45deg, rgba(166,0,255,1) 0%, rgba(25,0,168,1) 100%);
-  background: linear-gradient(45deg, rgba(166,0,255,1) 0%, rgba(25,0,168,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#a600ff",endColorstr="#1900a8",GradientType=1);
-}
-
 .content {
   display: flex;
   flex-direction: column;
@@ -59,6 +51,7 @@ html {
   font-weight: 200;
   text-align: center;
   padding: 5px 15px;
+  margin: 0 20px;
 }
 
 #btnStartApresentation, .confBtn {
@@ -163,7 +156,7 @@ html {
 }
 
 .task button {
-  display: block !important;
+  display: none;
   padding: 6px 15px;
   border-radius: 100rem;
   cursor: pointer;
@@ -177,4 +170,35 @@ html {
 
 .task button:hover {
   background-color: #FFF9;
+}
+
+#prevent-horizontal-mobile {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #111;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+#prevent-horizontal-mobile h1 {
+  color: #FFF;
+  font-size: 1.3rem;
+  text-align: center;
+  margin: 0 20px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .text {
+    font-size: 1.4rem;
+  }
+
+  .notice {
+    font-size: 0.75rem;
+    margin-top: 10px;
+  }
 }

@@ -110,12 +110,14 @@
 #cv-name {
   margin-top: 20px;
   font-size: 2.7rem;
+  text-align: center;
 }
 
 #cv-description {
   margin-top: 3px;
   font-style: italic;
   font-size: 0.9rem;
+  text-align: center;
 }
 
 #knowsPack {
@@ -132,7 +134,7 @@
   min-width: var(--initial-w);
   background-color: #151515;
   padding: 5px 0;
-  margin: 20px 20px 10px 0;
+  margin: 20px 20px 10px 20px;
   border-radius: 15px;
 }
 
@@ -226,6 +228,22 @@
   from {--p:0}
 }
 
+@media only screen and (min-width: 1024px) {
+  .page::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  .page::-webkit-scrollbar-track {
+    background: #FFF1;
+  }
+  
+  .page::-webkit-scrollbar-thumb {
+    background-color: #FFF4;
+    border-radius: 20px;
+    border: 3px solid #FFF1;
+  }
+}
+
 @media only screen and (min-width: 1035px) {
   .knowCard {
     width: var(--desktop-w);
@@ -287,24 +305,10 @@
   color: #DDD;
   border: none;
   font-size: 7rem;
-  margin: 0 40px;
+  margin: 15px 20px;
 }
 
 #github-contact { background-color: #333; }
 #github-contact:hover { background-color: #222 ;}
 #linkedin-contact { background-color: #0077B5;}
 #linkedin-contact:hover { background-color: #1aa1ea}
-
-.page::-webkit-scrollbar {
-  width: 12px;               /* width of the entire scrollbar */
-}
-
-.page::-webkit-scrollbar-track {
-  background: #FFF1;        /* color of the tracking area */
-}
-
-.page::-webkit-scrollbar-thumb {
-  background-color: #FFF4;    /* color of the scroll thumb */
-  border-radius: 20px;       /* roundness of the scroll thumb */
-  border: 3px solid #FFF1;  /* creates padding around scroll thumb */
-}

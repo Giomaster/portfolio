@@ -15,9 +15,14 @@
     <link rel="stylesheet" href="css/flyblock.css">
     <link rel="stylesheet" href="css/cv.css">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <script src="js/helper.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/task.js"></script>
 </head>
 <body>
+  <div id="prevent-horizontal-mobile">
+    <h1>Hey! Why did you lay there? Keep your phone upright for better experiences 🤡</h1>
+  </div>
     <div id="contentContainer">
         <div class="inlineContainers">
             <div class="painel" id="uselessSpace"></div>
@@ -223,7 +228,7 @@
                     <p class="text" id="apresentation-text"></p>
                     <p class="notice" id="apresentation-notice"></p>
                     <div class="show" id="apresentation-show">
-                        <div id="chess-board" onmousemove="Chess.move(event);">
+                        <div id="chess-board" onmousemove="Chess.move(event);" ontouchmove="Chess.move(event);">
                             <div class="square sq-white" id="a8"></div>
                             <div class="square sq-black" id="b8"></div>
                             <div class="square sq-white" id="c8"></div>
@@ -275,7 +280,7 @@
                             <div class="square sq-black" id="c3"></div>
                             <div class="square sq-white" id="d3"></div>
                             <div class="square sq-black" id="e3">
-                                <img src="img/rook-wh.png" class="chess-piece turnToMove" id="whiteRook" draggable="false" onmousedown="Chess.getPiece(this);" onmouseup="Chess.dropPiece(event);"/>
+                                <img src="img/rook-wh.png" class="chess-piece turnToMove" id="whiteRook" draggable="false" ontouchstart="Chess.getPiece(this);" onmousedown="Chess.getPiece(this);" ontouchend="Chess.dropPiece();" onmouseup="Chess.dropPiece();"/>
                             </div>
                             <div class="square sq-white" id="f3"></div>
                             <div class="square sq-black" id="g3"></div>

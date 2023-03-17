@@ -1,7 +1,10 @@
-var rotateDeg = 0;
-var slideLeft = 0;
-var slideTop  = -100;
-var backtrack;
+var backtrack; 
+var animateProp = {
+    slide: {
+        left: 0,
+        top: -100
+    }
+}
 
 var audio = {
   enable: false,
@@ -9,29 +12,14 @@ var audio = {
   scale: 0.05 
 }
 
-var taskProps = {
-    chess: {
-        piece: null,
-        moving: false,
-        dimension: 0
-    },
-    morse: {
-        solved: false,
-        delay: 150,
-        dot: 300,
-        dash: 750
-    },
-    skyblock: {
-        block: {
-            fb1: {exist: true, obstacle: null},
-            fb2: {exist: true, obstacle: 'fb1'},
-            fb3: {exist: true, obstacle: 'fb4'},
-            fb4: {exist: true, obstacle: 'fb2'}
-        }
-    }
-}
+// Iniciate CV interative process
+window.onload = function() { 
+    Chapter.settings();
+    document.addEventListener('touchmove', Mobile.prevent, {passive: false});
 
-window.onload = function() { Chapter.settings() }
+    Mobile.isLay();
+    window.addEventListener('resize', Mobile.isLay, false);
+}
 
 class Chapter {
     static settings() {
@@ -134,6 +122,7 @@ class Chapter {
 
         sleep(4700).then(() => {
             content.style.overflow = 'auto';
+            content.addEventListener('touchmove', (e) => { e.stopPropagation(); }, false);
         });
     }
 }
@@ -168,7 +157,7 @@ class Transition {
     static techBeginning() {
         const page = document.getElementById("contentContainer");
         Animation.reset();
-        Animation.slide(page, "left");
+        Animation.slide(page, "left", animateProp.slide);
         
         sleep(1400).then(() => (
             Chapter.techBeginning()
@@ -182,7 +171,7 @@ class Transition {
     static actually() {
         const page = document.getElementById("contentContainer");
         Animation.reset();
-        Animation.slide(page, "down");
+        Animation.slide(page, "down", animateProp.slide);
         
         sleep(1400).then(() => (
             Chapter.actually()
@@ -198,7 +187,7 @@ class Transition {
         content.style.overflow = 'hidden';
 
         Animation.reset();
-        Animation.slide(page, "left", 2);
+        Animation.slide(page, "left", animateProp.slide,2);
 
         sleep(5500).then(() => {
             Chapter.cv();
@@ -270,333 +259,6 @@ class Music {
     }
 }
 
-class Chess {
-    static move(e) {
-        if (!taskProps.chess.moving) {
-            return false;
-        }
-
-        const piece = document.getElementById(taskProps.chess.piece);
-
-        piece.style.left = `${e.pageX - piece.offsetWidth / 2}px`;
-        piece.style.top  = `${e.pageY - piece.offsetHeight / 2}px`; 
-        return false;
-    }
-
-    static getPiece(ele) {
-        taskProps.chess.moving = true;
-        taskProps.chess.piece = ele.id;
-
-        ele.style.width = `${ele.offsetWidth}px`;
-        ele.style.height = `${ele.offsetHeight}px`;
-        ele.style.position = 'fixed';
-        return false;
-    }
-
-    static dropPiece(e) {
-        const piece = document.getElementById(taskProps.chess.piece);
-        const correctSquare = document.getElementById('e8');
-        const coordinates = getScreenCordinates(correctSquare);
-
-        if (
-            e.pageX >= coordinates.x && 
-            e.pageX <= coordinates.x + correctSquare.offsetWidth &&
-            e.pageY >= coordinates.y &&
-            e.pageY <= coordinates.y + correctSquare.offsetHeight
-        ) {
-            correctSquare.appendChild(piece);
-            solvePuzzle();
-            setTimeout(() => {
-                Transition.techBeginning();
-            }, 1900);
-        }
-
-        piece.style.position = 'initial';
-        piece.style.width = `100%`;
-        piece.style.height = `100%`;
-        piece.style.removeProperty('left');
-        piece.style.removeProperty('top');
-
-        taskProps.chess.moving = false;
-        taskProps.chess.piece = null;
-        return false;
-    }
-
-    static correctMove(parent) {
-        const piece = document.getElementById(taskProps.chess.piece);
-        parent.appendChild(piece);
-
-        return false;
-    }
-}
-
-class Morse {
-    static async dot() {
-        const output = document.getElementById('outputCTF');
-        await sleep(taskProps.morse.delay).then(() => {
-            output.style.backgroundColor = '#96ff9b';
-        });
-
-        await sleep(taskProps.morse.dot).then(() => {
-            output.style.backgroundColor = '#EFEFEF';
-        })
-        console.log('dot');
-    }
-
-    static async dash() {
-        const output = document.getElementById('outputCTF');
-        await sleep(taskProps.morse.delay).then(() => {
-            output.style.backgroundColor = '#96ff9b';
-        });
-
-        await sleep(taskProps.morse.dash).then(() => {
-            output.style.backgroundColor = '#EFEFEF';
-        })
-
-        console.log('dash');
-    }
-
-    static run() {
-        const task = document.getElementById("task-ctf");
-        const btn = task.getElementsByTagName("button")[0];
-        const techBeginning = document.getElementById("techBeginning-show");
-        
-        Animation.show([techBeginning, task, btn]);
-        Morse.message();
-
-        return false;
-    }
-
-    static async message() {
-        const msg = [
-            this.dot,
-            this.dash,
-            this.dot,
-            this.dot,
-
-            this.dash,
-            this.dash,
-            this.dash,
-
-            this.dot,
-            this.dot,
-            this.dot,
-            this.dash,
-
-            this.dot,
-        ];
-        
-        
-        while (!taskProps.morse.solved) {
-            for (let index = 0; index < msg.length; index++) {
-                const func = msg[index];
-                await func();
-            }
-            await sleep(5000);              
-        }
-        
-    }
-
-    static key(input) {
-        if (input.value.toLowerCase() === 'love') {
-            taskProps.morse.solved = true;
-            input.disabled = true;
-            solvePuzzle();
-            sleep(1800).then(() => {
-                Transition.actually();
-            });
-        }
-    } 
-}
-
-class Flyblock {
-    static trigger(ele) {
-        const direction = ele.classList[1];
-
-        if (this.collide(direction, ele)) {
-            return false;
-        }
-
-        switch (direction) {
-            case 'fb-up':
-                ele.style.top = `-${screen.width * 2}px`;
-                break;
-            case 'fb-left':
-                ele.style.left = `-${screen.width * 2}px`;
-                break;
-            case 'fb-right':
-                ele.style.left = `${screen.width * 2}px`;
-                break;
-        }
-
-        taskProps.skyblock.block[ele.id].exist = false;
-        ele.style.opacity = '0';
-
-        for (const key in taskProps.skyblock.block) {
-            if (taskProps.skyblock.block[key].exist) {
-                return false
-            }
-        }
-
-        solvePuzzle();
-        sleep(2000).then(() => {
-            Transition.cv()
-        });
-
-        return false;
-    }
-
-    static collide(direction, ele) {
-        const obstacle = taskProps.skyblock.block[ele.id].obstacle;
-        if (obstacle === null) {
-            return false;
-        }
-
-        console.log(taskProps.skyblock.block[obstacle].exist);
-        if (!(taskProps.skyblock.block[obstacle].exist)) {
-            return false;
-        }
-        
-        const obj = document.getElementById(obstacle);
-        const coordinates = {
-            ele: {y: ele.offsetTop, x: ele.offsetLeft},
-            obj: {y: obj.offsetTop, x: obj.offsetLeft}
-        };
-        obj.style.transition = 'all 0.3s';
-        ele.style.transition = 'all 0.3s';
-        switch (direction) {
-            case 'fb-up':
-                ele.style.top = `${coordinates.ele.y - 5}px`
-                sleep(200).then(() => {
-                    obj.style.top = `${coordinates.obj.y - 20}px`;
-                })
-                sleep(500).then(() => {
-                    obj.style.top = `${coordinates.obj.y}px`;
-                })
-                sleep(800).then(() => {
-                    ele.style.top = `${coordinates.ele.y}px`;
-                })
-                break;
-            case 'fb-left':
-                ele.style.left = `${coordinates.ele.x - 5}px`
-                sleep(200).then(() => {
-                    obj.style.left = `${coordinates.obj.x - 20}px`;
-                })
-                sleep(500).then(() => {
-                    obj.style.left = `${coordinates.obj.x}px`;
-                })
-                sleep(800).then(() => {
-                    ele.style.left = `${coordinates.ele.x}px`;
-                })
-                break;
-        
-            case 'fb-right':
-                ele.style.left = `${coordinates.ele.x + 5}px`
-                sleep(200).then(() => {
-                    obj.style.left = `${coordinates.obj.x + 20}px`;
-                })
-                sleep(500).then(() => {
-                    obj.style.left = `${coordinates.obj.x}px`;
-                })
-                sleep(800).then(() => {
-                    ele.style.left = `${coordinates.ele.x}px`;
-                })
-                break;
-        }
-
-        sleep(1000).then(() => {
-            ele.removeAttribute('style');
-            obj.removeAttribute('style');
-        });
-        return true;
-    }
-}
-
-class Animation { 
-    static show(Elements) {
-        for (let index = 0; index < Elements.length; index++) {
-          const element = Elements[index];
-          
-          element.style.display = "flex";
-          sleep(100).then(() => {
-              element.style.opacity = 1;
-          });
-        }
-
-        return false;
-    }
-
-    static reset() {
-        const buttons = document.getElementsByTagName("button");
-        const texts    = document.getElementsByClassName("text");
-        rotateDeg = 0;
-
-        for (let index = 0; index < buttons.length; index++) {
-            if (buttons[index].classList.length > 0) {
-                if (buttons[index].classList[0] === 'btnMeet') {
-                    continue;
-                }
-            } 
-            
-            buttons[index].style.display = "none";
-            buttons[index].style.opacity = 0;
-        }
-
-        for (let index = 0; index < texts.length; index++) {
-            texts[index].innerHTML = "";
-        }
-
-    }
-
-    static changeColors(id, color) {
-        const faded = document.createElement("div");
-        let painel = document.getElementById(id);
-
-        faded.setAttribute("class", "fadedEfem");
-        faded.style.background = window.getComputedStyle(painel).backgroundColor;
-
-        painel.appendChild(faded);
-        painel.style.background = color;
-        sleep(100).then(() => {
-            faded.style.opacity = 0;
-        });
-
-        sleep(900).then(() => {
-            faded.remove();
-        });
-
-        return false;
-    }
-
-    static slide(Element, direction, frames = 1, time = 3 * frames) {
-        Element.style.transition = `background-color 2.8s, margin-top ${time}s, margin-left ${time}s`;
-        switch (direction) {
-            case "right":
-                slideLeft += 100 * frames;
-                Element.style.marginLeft = `${slideLeft}vw`;
-                break;
-            case "down":
-                slideTop += 100 * frames;
-                Element.style.marginTop = `${slideTop}vh`;
-                break;
-            case "left":
-                slideLeft -= 100 * frames;
-                Element.style.marginLeft = `${slideLeft}vw`;
-                break;
-            default:
-                slideTop -= 100 * frames;
-                Element.style.marginTop = `${slideTop}vh`;
-                break;
-        }
-
-        sleep(time * 1000).then(() => {
-            Element.style.transition = "background-color 2.8s";
-        });
-
-        return false;
-    }
-}
-
 function typping(text, velocity, index, func, args) {
     const textEle = document.getElementsByClassName("text")[index];
     let n = 0
@@ -651,11 +313,11 @@ function typeWithStops(text, velocity, index, func, args = null) {
     }
 
     let upSpace = (e) => {
-        if (e.code === 'Space' || e.type == "mouseup") { velocity = originVelocity; }
+        if (e.code === 'Space' || e.type == "mouseup" || e.type == "touchend") { velocity = originVelocity; }
     }
 
     let pressSpace = (e) => {
-        if (e.code === 'Space' || e.type == "mousedown") { velocity = originVelocity / 3; }
+        if (e.code === 'Space' || e.type == "mousedown" || e.type == "touchstart") { velocity = originVelocity / 3; }
     }
 
     document.addEventListener("keypress", pressSpace);
@@ -663,6 +325,8 @@ function typeWithStops(text, velocity, index, func, args = null) {
     document.addEventListener("keydown", jumpText);
     document.addEventListener("mousedown", pressSpace);
     document.addEventListener("mouseup", upSpace);
+    document.addEventListener("touchstart", pressSpace);
+    document.addEventListener("touchend", upSpace)
 
     let waitingKeypress = () => {
         return new Promise((resolve) => {
@@ -714,42 +378,6 @@ function typeWithStops(text, velocity, index, func, args = null) {
     }
 
     selectPhrase(text);
-
-    return false;
-}
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-function getScreenCordinates(obj) {
-    var p = {};
-    p.x = obj.offsetLeft;
-    p.y = obj.offsetTop;
-    while (obj.offsetParent) {
-        p.x = p.x + obj.offsetParent.offsetLeft;
-        p.y = p.y + obj.offsetParent.offsetTop;
-        if (obj == document.getElementsByTagName("body")[0]) {
-            break;
-        }
-        else {
-            obj = obj.offsetParent;
-        }
-    }
-    return p;
-}
-
-function solvePuzzle() {
-    const html = document.getElementsByTagName('html')[0];
-    const yay = document.createElement('img');
-    yay.setAttribute('class', 'yay');
-    yay.setAttribute('src', 'img/yay.gif');
-
-    html.appendChild(yay);
-
-    setTimeout(() => {
-        yay.remove();
-    }, 1800);
 
     return false;
 }

@@ -1,9 +1,9 @@
 #chess-board {
   display: flex;
   flex-wrap: wrap;
-  width: 100vw;
+  width: 85vw;
   max-width: 600px;
-  height: 100vw;
+  height: 85vw;
   max-height: 600px;
   border-radius: 1px;
 }
