@@ -53,10 +53,10 @@ class Chapter {
         text.style.fontWeight = "300";
 
         const monologue = [
-            ["At age 10, I started playing chess competitively.", []],
-            ["I played because I always found logic in general something amazing!", []],
-            ["So I started to study with a lot of dedication", []],
-            ["I achieved several achievements, to the point of playing professionally representing my city", []],
+            ["At age 10, I started playing chess competitively", []],
+            ["I started playing because I always found logic in general something amazing!", []],
+            ["So I study with a lot of dedication", []],
+            ["I have won several achievements, to the point of playing professionally representing my city", []],
         ]
 
         typeWithStops(monologue, 40, 1, Animation.show, [[apresentation, task, btn]]);
@@ -92,7 +92,7 @@ class Chapter {
 
         const monologue = [
             ["It was at the age of 17 that I started doing big projects", []],
-            ["I developed the startup system from end to end, the team for this was me and two interns", []],
+            ["I developed a system for a startup from start to finish, the team for this was me and two interns", []],
             ["I also developed something like an internal system to manage the products and services of an air conditioning company, as I literally did it myself so it was a coold experience.", []],
             ["After that I started working at Stone Co. as a developer in the infrastructure area", []],
             ["I'm learning a lot about... Infra as code, CI/CD, Kubernetes, Clouds, terraform, and so on", []],
