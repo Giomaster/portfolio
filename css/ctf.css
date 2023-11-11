@@ -50,3 +50,11 @@
 #secretCTF::placeholder {
   color: #EFEFEF;
 }
+
+@media screen and (max-width: 600px) {
+  #outputCTF {
+    width: 90%;
+    height: 10px;
+    border-radius: 30px;
+  }
+}

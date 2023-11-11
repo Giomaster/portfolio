@@ -19,18 +19,18 @@
 .k4 { --w: calc(var(--initial-w) - (var(--space) * 4)); }
 
 #frontEnd .k1 { --c: #a3ffa3; --p:98; }
-#frontEnd .k2 { --c: #19de19; --p:92; }
+#frontEnd .k2 { --c: #19de19; --p:96; }
 #frontEnd .k3 { --c: #0a8d0a; --p:89; }
 #frontEnd .k4 { --c: #025c02; --p:84; }
 #backEnd .k1 { --c: #F1959B; --p:94; }
-#backEnd .k2 { --c: #eb5f5a; --p:92; }
-#backEnd .k3 { --c: #c72721; --p:86; }
-#backEnd .k4 { --c: #8f0600; --p:74; }
-#devOps .k1 { --c: #fff19a; --p:65; }
-#devOps .k2 { --c: #ffe65c; --p:69; }
-#devOps .k3 { --c: #cbad1c; --p:58; }
-#devOps .k4 { --c: #8d750a; --p:73; }
-#misc .k1 { --c: #9dd1ff; --p:95; }
+#backEnd .k2 { --c: #eb5f5a; --p:96; }
+#backEnd .k3 { --c: #c72721; --p:92; }
+#backEnd .k4 { --c: #8f0600; --p:90; }
+#devOps .k1 { --c: #fff19a; --p:85; }
+#devOps .k2 { --c: #ffe65c; --p:80; }
+#devOps .k3 { --c: #cbad1c; --p:77; }
+#devOps .k4 { --c: #8d750a; --p:83; }
+#misc .k1 { --c: #9dd1ff; --p:98; }
 #misc .k2 { --c: #53afff; --p:46; }
 #misc .k3 { --c: #206db1; --p:70; }
 #misc .k4 { --c: #00305a; --p:90; }

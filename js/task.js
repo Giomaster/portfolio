@@ -97,7 +97,6 @@ class Morse {
       await sleep(taskProps.morse.dot).then(() => {
           output.style.backgroundColor = '#EFEFEF';
       })
-      console.log('dot');
   }
 
   static async dash() {
@@ -109,8 +108,6 @@ class Morse {
       await sleep(taskProps.morse.dash).then(() => {
           output.style.backgroundColor = '#EFEFEF';
       })
-
-      console.log('dash');
   }
 
   static run() {

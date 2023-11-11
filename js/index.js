@@ -12,6 +12,14 @@ var audio = {
   scale: 0.05 
 }
 
+var playlist = {
+    intro: new Audio('music/intro.mp3'),
+    cv: new Audio('music/cv.mp3'),
+    beginning: new Audio('music/beginning.mp3'),
+    chess: new Audio('music/chess.mp3'),
+    actually: new Audio('music/actually.mp3')
+}
+
 // Iniciate CV interative process
 window.onload = function() { 
     Chapter.settings();
@@ -133,7 +141,7 @@ class Transition {
       config.style.opacity = 0;
       setTimeout(() => { 
         config.style.display = 'none';
-        Music.start("intro.mp3", 0, 200);
+        Music.start(playlist.intro, 0, 200);
         setTimeout(() => { Chapter.intro(); }, 1500);
       }, 1000);
 
@@ -146,7 +154,7 @@ class Transition {
         'linear-gradient(45deg, #BF7A30 35%, 70%, #EDD599)'
         );
 
-        Music.next("chess.mp3", 10, 95);
+        Music.next(playlist.chess, 10, 95);
         setTimeout(() => {
             Chapter.chess();
         }, 850);
@@ -163,7 +171,7 @@ class Transition {
             Chapter.techBeginning()
         ));
         
-        Music.next("beginning.mp3", 0, 90);
+        Music.next(playlist.beginning, 0, 90);
 
         return false;
     }
@@ -176,7 +184,7 @@ class Transition {
         sleep(1400).then(() => (
             Chapter.actually()
         ));
-        Music.next("actually.mp3", 0, 110);
+        Music.next(playlist.actually, 0, 110);
 
         return false;
     }
@@ -193,7 +201,7 @@ class Transition {
             Chapter.cv();
         });
         
-        Music.next("cv.mp3", 0, 270);
+        Music.next(playlist.cv, 0, 270);
         return false;
     }
 }
@@ -204,7 +212,7 @@ class Music {
           return false;
         }
 
-        backtrack = new Audio('music/' + music);
+        backtrack = music;
         backtrack.currentTime = time;
         backtrack.volume = 0;
         let vol = 0;
