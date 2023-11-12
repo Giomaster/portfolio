@@ -21,7 +21,11 @@ var playlist = {
 }
 
 // Iniciate CV interative process
-window.onload = function() { 
+window.onload = function() {
+    if(window.location.protocol === 'http:') {
+        location.href = location.href.replace("http://", "https://");
+    }
+
     Chapter.settings();
     document.addEventListener('touchmove', Mobile.prevent, {passive: false});
 

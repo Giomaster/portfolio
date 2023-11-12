@@ -160,7 +160,30 @@ class Morse {
               Transition.actually();
           });
       }
-  } 
+  }
+
+  static clickMobile(letter) {
+    const allPressedLetters = document.getElementsByClassName('selected-letter');
+    let checkPopLetter = 4;
+    if (letter.classList.contains('selected-letter')) {
+        letter.classList.remove('selected-letter');
+    } else {
+        letter.classList.add('selected-letter');
+    }
+
+    for (let i = 0; i < allPressedLetters.length; i++) {
+        const l = allPressedLetters[i];
+        if (!"love".includes(l.innerHTML)) return;
+        if ("love".includes(l.innerHTML)) checkPopLetter--;
+    }
+
+    if (checkPopLetter > 0) return;
+    taskProps.morse.solved = true;
+    solvePuzzle();
+    sleep(1800).then(() => {
+        Transition.actually();
+    });
+  }
 }
 
 class Flyblock {
