@@ -7,13 +7,11 @@ var taskProps = {
         y: 0
       }
   },
-  morse: {
+  anagram: {
       solved: false,
-      delay: 150,
-      dot: 300,
-      dash: 750
+      word: 'KUBERNETES'
   },
-  skyblock: {
+  flyblock: {
       block: {
           fb1: {exist: true, obstacle: null},
           fb2: {exist: true, obstacle: 'fb1'},
@@ -78,111 +76,105 @@ class Chess {
       taskProps.chess.piece = null;
       return false;
   }
-
-  static correctMove(parent) {
-      const piece = document.getElementById(taskProps.chess.piece);
-      parent.appendChild(piece);
-
-      return false;
-  }
 }
 
-class Morse {
-  static async dot() {
-      const output = document.getElementById('outputCTF');
-      await sleep(taskProps.morse.delay).then(() => {
-          output.style.backgroundColor = '#96ff9b';
-      });
-
-      await sleep(taskProps.morse.dot).then(() => {
-          output.style.backgroundColor = '#EFEFEF';
-      })
-  }
-
-  static async dash() {
-      const output = document.getElementById('outputCTF');
-      await sleep(taskProps.morse.delay).then(() => {
-          output.style.backgroundColor = '#96ff9b';
-      });
-
-      await sleep(taskProps.morse.dash).then(() => {
-          output.style.backgroundColor = '#EFEFEF';
-      })
-  }
-
+class Anagram {
   static run() {
-      const task = document.getElementById("task-ctf");
+      const task = document.getElementById("task-anagram");
       const btn = task.getElementsByTagName("button")[0];
       const techBeginning = document.getElementById("techBeginning-show");
-      
+
+      Anagram.build();
       Animation.show([techBeginning, task, btn]);
-      Morse.message();
 
       return false;
   }
 
-  static async message() {
-      const msg = [
-          this.dot,
-          this.dash,
-          this.dot,
-          this.dot,
+  static build() {
+      const word = taskProps.anagram.word;
+      const slots = document.getElementById('anagram-slots');
+      const pool  = document.getElementById('anagram-pool');
 
-          this.dash,
-          this.dash,
-          this.dash,
+      slots.replaceChildren();
+      pool.replaceChildren();
+      slots.classList.remove('solved', 'wrong');
 
-          this.dot,
-          this.dot,
-          this.dot,
-          this.dash,
+      for (let i = 0; i < word.length; i++) {
+          const slot = document.createElement('div');
+          slot.className = 'anagram-slot';
+          slot.dataset.index = i;
+          slot.addEventListener('click', () => Anagram.removeLetter(slot));
+          slots.appendChild(slot);
+      }
 
-          this.dot,
-      ];
-      
-      
-      while (!taskProps.morse.solved) {
-          for (let index = 0; index < msg.length; index++) {
-              const func = msg[index];
-              await func();
+      const letters = word.split('');
+      do {
+          for (let i = letters.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [letters[i], letters[j]] = [letters[j], letters[i]];
           }
-          await sleep(5000);              
-      }
-      
+      } while (letters.join('') === word);
+
+      letters.forEach((letter, i) => {
+          const tile = document.createElement('div');
+          tile.className = 'anagram-tile';
+          tile.dataset.poolIndex = i;
+          tile.textContent = letter;
+          tile.addEventListener('click', () => Anagram.placeLetter(tile));
+          pool.appendChild(tile);
+      });
   }
 
-  static key(input) {
-      if (input.value.toLowerCase() === 'love') {
-          taskProps.morse.solved = true;
-          input.disabled = true;
+  static placeLetter(tile) {
+      if (tile.classList.contains('used') || taskProps.anagram.solved) return;
+
+      const slots = document.getElementById('anagram-slots');
+      const emptySlot = Array.from(slots.children)
+          .find(s => !s.dataset.poolIndex);
+      if (!emptySlot) return;
+
+      emptySlot.textContent = tile.textContent;
+      emptySlot.dataset.poolIndex = tile.dataset.poolIndex;
+      emptySlot.classList.add('filled');
+      tile.classList.add('used');
+
+      Anagram.check();
+  }
+
+  static removeLetter(slot) {
+      if (!slot.dataset.poolIndex || taskProps.anagram.solved) return;
+
+      const pool = document.getElementById('anagram-pool');
+      const tile = pool.querySelector(`[data-pool-index="${slot.dataset.poolIndex}"]`);
+      if (tile) tile.classList.remove('used');
+
+      slot.textContent = '';
+      slot.classList.remove('filled');
+      delete slot.dataset.poolIndex;
+  }
+
+  static check() {
+      const word = taskProps.anagram.word;
+      const slots = document.getElementById('anagram-slots');
+      const current = Array.from(slots.children)
+          .map(s => s.textContent)
+          .join('');
+
+      if (current.length < word.length) return;
+
+      if (current === word) {
+          taskProps.anagram.solved = true;
+          slots.classList.add('solved');
           solvePuzzle();
-          sleep(1800).then(() => {
-              Transition.actually();
-          });
+          sleep(1800).then(() => Transition.actually());
+          return;
       }
-  }
 
-  static clickMobile(letter) {
-    const allPressedLetters = document.getElementsByClassName('selected-letter');
-    let checkPopLetter = 4;
-    if (letter.classList.contains('selected-letter')) {
-        letter.classList.remove('selected-letter');
-    } else {
-        letter.classList.add('selected-letter');
-    }
-
-    for (let i = 0; i < allPressedLetters.length; i++) {
-        const l = allPressedLetters[i];
-        if (!"love".includes(l.innerHTML)) return;
-        if ("love".includes(l.innerHTML)) checkPopLetter--;
-    }
-
-    if (checkPopLetter > 0) return;
-    taskProps.morse.solved = true;
-    solvePuzzle();
-    sleep(1800).then(() => {
-        Transition.actually();
-    });
+      slots.classList.add('wrong');
+      setTimeout(() => {
+          slots.classList.remove('wrong');
+          Array.from(slots.children).forEach(s => Anagram.removeLetter(s));
+      }, 500);
   }
 }
 
@@ -206,11 +198,11 @@ class Flyblock {
               break;
       }
 
-      taskProps.skyblock.block[ele.id].exist = false;
+      taskProps.flyblock.block[ele.id].exist = false;
       ele.style.opacity = '0';
 
-      for (const key in taskProps.skyblock.block) {
-          if (taskProps.skyblock.block[key].exist) {
+      for (const key in taskProps.flyblock.block) {
+          if (taskProps.flyblock.block[key].exist) {
               return false
           }
       }
@@ -224,12 +216,12 @@ class Flyblock {
   }
 
   static collide(direction, ele) {
-      const obstacle = taskProps.skyblock.block[ele.id].obstacle;
+      const obstacle = taskProps.flyblock.block[ele.id].obstacle;
       if (obstacle === null) {
           return false;
       }
 
-      if (!(taskProps.skyblock.block[obstacle].exist)) {
+      if (!(taskProps.flyblock.block[obstacle].exist)) {
           return false;
       }
       
@@ -289,16 +281,6 @@ class Flyblock {
 }
 
 function solvePuzzle() {
-  const html = document.getElementsByTagName('html')[0];
-  const yay = document.createElement('img');
-  yay.setAttribute('class', 'yay');
-  yay.setAttribute('src', 'img/yay.gif');
-
-  html.appendChild(yay);
-
-  setTimeout(() => {
-      yay.remove();
-  }, 1800);
-
+  Confetti.fire();
   return false;
 }

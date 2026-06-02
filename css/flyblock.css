@@ -1,9 +1,5 @@
 #actually {
-  background: rgb(166,0,255);
-  background: -moz-linear-gradient(45deg, rgba(166,0,255,1) 0%, rgba(25,0,168,1) 100%);
-  background: -webkit-linear-gradient(45deg, rgba(166,0,255,1) 0%, rgba(25,0,168,1) 100%);
-  background: linear-gradient(45deg, rgba(166,0,255,1) 0%, rgba(25,0,168,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#a600ff",endColorstr="#1900a8",GradientType=1);
+  background: linear-gradient(45deg, rgba(166, 0, 255, 1) 0%, rgba(25, 0, 168, 1) 100%);
 }
 
 #fly-block {
@@ -25,26 +21,15 @@
   border-radius: 8px;
   position: absolute;
   cursor: pointer;
-  font-size: 5rem;
   transition: all 5s;
 }
 
-#fb1 {
-  top: 0;
-  left: 0;
+.fb .icon {
+  width: 80px;
+  height: 80px;
 }
 
-#fb2 {
-  top: 0;
-  left: calc(50% + 5px);
-}
-
-#fb3 {
-  top: calc(50% + 5px);
-  left: 0;
-}
-
-#fb4 {
-  top: calc(50% + 5px);
-  left: calc(50% + 5px);
-}
+#fb1 { top: 0; left: 0; }
+#fb2 { top: 0; left: calc(50% + 5px); }
+#fb3 { top: calc(50% + 5px); left: 0; }
+#fb4 { top: calc(50% + 5px); left: calc(50% + 5px); }

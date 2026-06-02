@@ -2,27 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giovanni Martins</title>
+    <title>Giovanni Rios Martins · Backend & Platform Engineer</title>
+    <meta name="description" content="Interactive portfolio of Giovanni Rios Martins — backend & platform engineer, 6 years shipping production systems end-to-end. Internal Developer Platforms at Stone Pagamentos, mech4u, and the open-source control plane Yggdrasil. Go, TypeScript, Node.js, Python, Kubernetes.">
+    <meta name="author" content="Giovanni Rios Martins">
+
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="Giovanni Rios Martins · Backend & Platform Engineer">
+    <meta property="og:description" content="Interactive portfolio. 6 years shipping production systems. Internal Developer Platforms · Stone Pagamentos · Yggdrasil. Go · TypeScript · Node.js · Python · Kubernetes.">
+    <meta property="og:image" content="img/me.jpg">
+    <meta property="profile:first_name" content="Giovanni">
+    <meta property="profile:last_name" content="Rios Martins">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Giovanni Rios Martins · Backend & Platform Engineer">
+    <meta name="twitter:description" content="Interactive portfolio. 6 years shipping production systems end-to-end.">
+    <meta name="twitter:image" content="img/me.jpg">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/chess.css">
-    <link rel="stylesheet" href="css/ctf.css">
+    <link rel="stylesheet" href="css/anagram.css">
     <link rel="stylesheet" href="css/flyblock.css">
+    <link rel="stylesheet" href="css/projects.css">
     <link rel="stylesheet" href="css/cv.css">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <script src="js/helper.js"></script>
-    <script src="js/index.js"></script>
-    <script src="js/task.js"></script>
+    <script src="js/helper.js" defer></script>
+    <script src="js/confetti.js" defer></script>
+    <script src="js/index.js" defer></script>
+    <script src="js/task.js" defer></script>
 </head>
 <body>
-  <div id="prevent-horizontal-mobile">
-    <h1>Hey! Why did you lay there? Keep your phone upright for better experiences 🤡</h1>
-  </div>
+    <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+      <defs>
+        <symbol id="i-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+        <symbol id="i-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></symbol>
+        <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+        <symbol id="i-headphones" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3v5zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3v5z"/></symbol>
+        <symbol id="i-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+        <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.063 2.063 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></symbol>
+        <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></symbol>
+      </defs>
+    </svg>
+
+    <div id="prevent-horizontal-mobile">
+      <h1>This story plays better upright. Rotate the phone and come back.</h1>
+    </div>
     <div id="contentContainer">
         <div class="inlineContainers">
             <div class="painel" id="uselessSpace"></div>
@@ -32,17 +61,17 @@
                     <p class="notice" id="actually-notice"></p>
                     <div class="show" id="actually-show">
                         <div id="fly-block">
-                            <div class="fb fb-up" id="fb1" onclick="Flyblock.trigger(this);">
-                                <i class="fas fa-arrow-up"></i>
+                            <div class="fb fb-up" id="fb1" onclick="Flyblock.trigger(this);" role="button" aria-label="Move block up">
+                                <svg class="icon"><use href="#i-arrow-up"/></svg>
                             </div>
-                            <div class="fb fb-left" id="fb2" onclick="Flyblock.trigger(this);">
-                                <i class="fas fa-arrow-left"></i>
+                            <div class="fb fb-left" id="fb2" onclick="Flyblock.trigger(this);" role="button" aria-label="Move block left">
+                                <svg class="icon"><use href="#i-arrow-left"/></svg>
                             </div>
-                            <div class="fb fb-right" id="fb3" onclick="Flyblock.trigger(this);">
-                                <i class="fas fa-arrow-right"></i>
+                            <div class="fb fb-right" id="fb3" onclick="Flyblock.trigger(this);" role="button" aria-label="Move block right">
+                                <svg class="icon"><use href="#i-arrow-right"/></svg>
                             </div>
-                            <div class="fb fb-up" id="fb4" onclick="Flyblock.trigger(this);">
-                                <i class="fas fa-arrow-up"></i>
+                            <div class="fb fb-up" id="fb4" onclick="Flyblock.trigger(this);" role="button" aria-label="Move block up">
+                                <svg class="icon"><use href="#i-arrow-up"/></svg>
                             </div>
                         </div>
                     </div>
@@ -52,173 +81,223 @@
             <div class="painel" id="cv-transition"></div>
             <div class="page" id="contentCV">
               <div id="cv-thanku">
-                <h1>Thank You!</h1>
+                <h1>Still here. Thank you.</h1>
               </div>
-              <img src="img/me.png" alt="Giovanni Martins" id="cv-image" />
-              <h1 id="cv-name">Giovanni Martins</h1>
-              <p id="cv-description">Full Stack Engineer and DevOps, with some tricks that can make a difference</p>
+              <img src="img/me.jpg" alt="Photo of Giovanni Rios Martins" id="cv-image" width="500" height="500" loading="lazy" />
+              <h1 id="cv-name">Giovanni Rios Martins</h1>
+              <p id="cv-description">Backend &amp; Platform Engineer · Internal Developer Platforms · 6 years shipping production systems end-to-end</p>
+
+              <div id="cv-actions">
+                <a class="cv-action primary" href="cv.pdf" target="_blank" rel="noopener" download="Giovanni-Rios-Martins-CV.pdf">
+                  <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
+                  <span>Download CV</span>
+                </a>
+                <a class="cv-action secondary" href="mailto:giovanni.c.martins@gmail.com">
+                  <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>
+                  <span>Email me</span>
+                </a>
+              </div>
+
               <div id="knowsPack">
                 <div class="knowCard" id="frontEnd">
                   <div class='front'>
-                    <h1 class='knowName'>Front-End</h1>
+                    <h2 class='knowName'>Languages</h2>
                     <div class='graphs'>
                       <div class='graphsInner'>
-                        <div class='graph'>
-                          <div class='pie k1' id="p1"></div>
-                        </div>
-                        <div class='graph'>
-                          <div class='pie k2' id="p2"></div>
-                        </div>
-                        <div class='graph'>
-                          <div class='pie k3' id="p3"></div>
-                        </div>
-                        <div class='graph'>
-                          <div class='pie k4' id="p4"></div>
-                        </div>
+                        <div class='graph'><div class='pie k1' id="p1"></div></div>
+                        <div class='graph'><div class='pie k2' id="p2"></div></div>
+                        <div class='graph'><div class='pie k3' id="p3"></div></div>
+                        <div class='graph'><div class='pie k4' id="p4"></div></div>
                       </div>
                     </div>
                     <div class='knownLegends'>
-                      <div class='knownLegend'>
-                        <div class='kl-dot kl1'></div>
-                        <span>HTML/CSS - 98%</span>
-                      </div>
-                      <div class='knownLegend'>
-                        <div class='kl-dot kl2'></div>
-                        <span>Javascript - 96%</span>
-                      </div>
-                      <div class='knownLegend'>
-                        <div class='kl-dot kl3'></div>
-                        <span>React - 89%</span>
-                      </div>
-                      <div class='knownLegend'>
-                        <div class='kl-dot kl4'></div>
-                        <span>Django - 84%</span>
-                      </div>
+                      <div class='knownLegend'><div class='kl-dot kl1'></div><span>Go · 95%</span></div>
+                      <div class='knownLegend'><div class='kl-dot kl2'></div><span>TypeScript · 95%</span></div>
+                      <div class='knownLegend'><div class='kl-dot kl3'></div><span>Node.js · 90%</span></div>
+                      <div class='knownLegend'><div class='kl-dot kl4'></div><span>Python · 82%</span></div>
                     </div>
                   </div>
                 </div>
                 <div class="knowCard" id="backEnd">
                     <div class='front'>
-                      <h1 class='knowName'>Back-End</h1>
+                      <h2 class='knowName'>Platform &amp; IaC</h2>
                       <div class='graphs'>
                         <div class='graphsInner'>
-                          <div class='graph'>
-                            <div class='pie k1' id="p5"></div>
-                          </div>
-                          <div class='graph'>
-                            <div class='pie k2' id="p6"></div>
-                          </div>
-                          <div class='graph'>
-                            <div class='pie k3' id="p7"></div>
-                          </div>
-                          <div class='graph'>
-                            <div class='pie k4' id="p8"></div>
-                          </div>
+                          <div class='graph'><div class='pie k1' id="p5"></div></div>
+                          <div class='graph'><div class='pie k2' id="p6"></div></div>
+                          <div class='graph'><div class='pie k3' id="p7"></div></div>
+                          <div class='graph'><div class='pie k4' id="p8"></div></div>
                         </div>
                       </div>
                       <div class='knownLegends'>
-                        <div class='knownLegend'>
-                          <div class='kl-dot kl1'></div>
-                          <span>PHP - 94%</span>
-                        </div>
-                        <div class='knownLegend'>
-                          <div class='kl-dot kl2'></div>
-                          <span>Javascript - 96%</span>
-                        </div>
-                        <div class='knownLegend'>
-                          <div class='kl-dot kl3'></div>
-                          <span>Python - 92%</span>
-                        </div>
-                        <div class='knownLegend'>
-                          <div class='kl-dot kl4'></div>
-                          <span>GO - 90%</span>
-                        </div>
+                        <div class='knownLegend'><div class='kl-dot kl1'></div><span>Kubernetes · 95%</span></div>
+                        <div class='knownLegend'><div class='kl-dot kl2'></div><span>Terraform · 92%</span></div>
+                        <div class='knownLegend'><div class='kl-dot kl3'></div><span>Backstage · 88%</span></div>
+                        <div class='knownLegend'><div class='kl-dot kl4'></div><span>Crossplane · 90%</span></div>
                       </div>
                     </div>
-                  </div>
-                  <div class="knowCard" id="devOps">
+                </div>
+                <div class="knowCard" id="devOps">
                     <div class='front'>
-                      <h1 class='knowName'>DevOps</h1>
+                      <h2 class='knowName'>Cloud &amp; DevOps</h2>
                       <div class='graphs'>
                         <div class='graphsInner'>
-                          <div class='graph'>
-                            <div class='pie k1' id="p9"></div>
-                          </div>
-                          <div class='graph'>
-                            <div class='pie k2' id="p10"></div>
-                          </div>
-                          <div class='graph'>
-                            <div class='pie k3' id="p11"></div>
-                          </div>
-                          <div class='graph'>
-                            <div class='pie k4' id="p12"></div>
-                          </div>
+                          <div class='graph'><div class='pie k1' id="p9"></div></div>
+                          <div class='graph'><div class='pie k2' id="p10"></div></div>
+                          <div class='graph'><div class='pie k3' id="p11"></div></div>
+                          <div class='graph'><div class='pie k4' id="p12"></div></div>
                         </div>
                       </div>
                       <div class='knownLegends'>
-                        <div class='knownLegend'>
-                          <div class='kl-dot kl1'></div>
-                          <span>Kubernetes - 85%</span>
-                        </div>
-                        <div class='knownLegend'>
-                          <div class='kl-dot kl2'></div>
-                          <span>Cloud - 80%</span>
-                        </div>
-                        <div class='knownLegend'>
-                          <div class='kl-dot kl3'></div>
-                          <span>Terraform - 77%</span>
-                        </div>
-                        <div class='knownLegend'>
-                          <div class='kl-dot kl4'></div>
-                          <span>Crossplane - 83%</span>
-                        </div>
+                        <div class='knownLegend'><div class='kl-dot kl1'></div><span>AWS · 95%</span></div>
+                        <div class='knownLegend'><div class='kl-dot kl2'></div><span>Docker · 92%</span></div>
+                        <div class='knownLegend'><div class='kl-dot kl3'></div><span>CI/CD · 88%</span></div>
+                        <div class='knownLegend'><div class='kl-dot kl4'></div><span>Observability · 85%</span></div>
                       </div>
                     </div>
-                  </div>
-                  <div class="knowCard" id="misc">
+                </div>
+                <div class="knowCard" id="misc">
                     <div class='front'>
-                      <h1 class='knowName'>Miscellaneous</h1>
+                      <h2 class='knowName'>Backend &amp; Data</h2>
                       <div class='graphs'>
                         <div class='graphsInner'>
-                          <div class='graph'>
-                            <div class='pie k1' id="p13"></div>
-                          </div>
-                          <div class='graph'>
-                            <div class='pie k2' id="p14"></div>
-                          </div>
-                          <div class='graph'>
-                            <div class='pie k3' id="p15"></div>
-                          </div>
-                          <div class='graph'>
-                            <div class='pie k4' id="p16"></div>
-                          </div>
+                          <div class='graph'><div class='pie k1' id="p13"></div></div>
+                          <div class='graph'><div class='pie k2' id="p14"></div></div>
+                          <div class='graph'><div class='pie k3' id="p15"></div></div>
+                          <div class='graph'><div class='pie k4' id="p16"></div></div>
                         </div>
                       </div>
                       <div class='knownLegends'>
-                        <div class='knownLegend'>
-                          <div class='kl-dot kl1'></div>
-                          <span>Backstage - 98%</span>
-                        </div>
-                        <div class='knownLegend'>
-                          <div class='kl-dot kl2'></div>
-                          <span>Machine Learning - 46%</span>
-                        </div>
-                        <div class='knownLegend'>
-                          <div class='kl-dot kl3'></div>
-                          <span>Security - 70%</span>
-                        </div>
-                        <div class='knownLegend'>
-                          <div class='kl-dot kl4'></div>
-                          <span>SQL - 90%</span>
-                        </div>
+                        <div class='knownLegend'><div class='kl-dot kl1'></div><span>PostgreSQL · 92%</span></div>
+                        <div class='knownLegend'><div class='kl-dot kl2'></div><span>NestJS · 85%</span></div>
+                        <div class='knownLegend'><div class='kl-dot kl3'></div><span>Redis · 80%</span></div>
+                        <div class='knownLegend'><div class='kl-dot kl4'></div><span>Django · 78%</span></div>
                       </div>
                     </div>
-                  </div>
+                </div>
               </div>
+
+              <section id="skill-tags">
+                <div class="tag-group">
+                  <h3>Architecture &amp; practices</h3>
+                  <div class="tags">
+                    <span class="tag">System design</span>
+                    <span class="tag">IAM · OIDC / SAML / SCIM</span>
+                    <span class="tag">AI-assisted dev</span>
+                    <span class="tag">Code review</span>
+                    <span class="tag">Automated testing</span>
+                  </div>
+                </div>
+                <div class="tag-group">
+                  <h3>Backend &amp; APIs</h3>
+                  <div class="tags">
+                    <span class="tag">REST / OpenAPI</span>
+                    <span class="tag">Microservices</span>
+                    <span class="tag">NestJS</span>
+                    <span class="tag">Django</span>
+                    <span class="tag">Docker</span>
+                  </div>
+                </div>
+                <div class="tag-group">
+                  <h3>Platform &amp; delivery</h3>
+                  <div class="tags">
+                    <span class="tag">GitOps</span>
+                    <span class="tag">Kustomize</span>
+                    <span class="tag">Multi-cloud</span>
+                    <span class="tag">Observability · Prometheus / Grafana / Loki</span>
+                  </div>
+                </div>
+                <div class="tag-group">
+                  <h3>Yggdrasil internals</h3>
+                  <div class="tags">
+                    <span class="tag">Declarative apply / diff / rollback</span>
+                    <span class="tag">Event-driven reactors</span>
+                    <span class="tag">Workflow engine</span>
+                    <span class="tag">Pluggable adapters</span>
+                    <span class="tag">MCP servers</span>
+                  </div>
+                </div>
+              </section>
+
+              <section id="projects">
+                <h2 id="projects-title">Selected work</h2>
+                <div class="project-cards">
+                  <article class="project-card featured">
+                    <div class="project-meta">
+                      <span class="project-badge">Featured · Open source</span>
+                      <span class="project-era">In development</span>
+                    </div>
+                    <h3 class="project-name">Yggdrasil</h3>
+                    <p class="project-tagline">An open-source control plane that <em>operates</em> infrastructure — not just catalogs it. Apache-2.0.</p>
+                    <p class="project-description">Declarative manifests with real GitOps — apply, diff and rollback — plus a workflow engine driven by event-driven reactors. Written in Go with a full-lifecycle CLI and Go SDK. Self-hosted by design on your own Kubernetes/Postgres, with MFA auth, multi-tenant surfaces (dashboards, APIs, MCP servers, bots) and a public integration contract anyone can extend.</p>
+                    <div class="project-stack">
+                      <span class="tag">Go</span>
+                      <span class="tag">Kubernetes</span>
+                      <span class="tag">PostgreSQL</span>
+                      <span class="tag">RabbitMQ</span>
+                      <span class="tag">Declarative apply / diff / rollback</span>
+                      <span class="tag">Pluggable adapters (AWS · GCP · Stripe · …)</span>
+                      <span class="tag">One-command install</span>
+                    </div>
+                    <div class="project-links">
+                      <a href="https://dakasa-yggdrasil.github.io" target="_blank" rel="noopener" class="project-link primary">
+                        <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+                        <span>Explore Yggdrasil — dakasa-yggdrasil.github.io</span>
+                      </a>
+                      <a href="https://github.com/dakasa-yggdrasil" target="_blank" rel="noopener" class="project-link">
+                        <svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>
+                        <span>github.com/dakasa-yggdrasil</span>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="project-card">
+                    <div class="project-meta">
+                      <span class="project-era">2021 — 2026 · 5 years</span>
+                      <span class="project-where">Stone Pagamentos · Backend Engineer (Junior → Backend Engineer II)</span>
+                    </div>
+                    <h3 class="project-name">Internal Developer Platform</h3>
+                    <p class="project-description">One of the engineers who built the company's IDP from its early days — today used by dozens of squads. Worked across the platform stack end to end (Backstage, Crossplane, Terraform, multi-cloud, GitOps) and built backend services in Node.js / NestJS / TypeScript with versioned REST/OpenAPI contracts, PostgreSQL, Docker and CI/CD. Owned features end-to-end — technical design, deployment, production monitoring and iteration — with security best practices (authn/z, input validation).</p>
+                    <div class="project-stack">
+                      <span class="tag">Backstage</span>
+                      <span class="tag">Crossplane</span>
+                      <span class="tag">Terraform</span>
+                      <span class="tag">Kubernetes</span>
+                      <span class="tag">Multi-cloud</span>
+                      <span class="tag">GitOps</span>
+                      <span class="tag">Node.js · NestJS · TypeScript</span>
+                    </div>
+                  </article>
+                  <article class="project-card">
+                    <div class="project-meta">
+                      <span class="project-era">2019 — 2021 · early career</span>
+                      <span class="project-where">mech4u · SandreFrio</span>
+                    </div>
+                    <h3 class="project-name">Founding engineer &amp; freelance</h3>
+                    <p class="project-description">Founding engineer at mech4u: shipped an automated parts-quotation product to production — Python services driving AutoCAD to extract part dimensions from CAD drawings and price them. For SandreFrio, built a Django web application to digitize the company's data entry and management.</p>
+                    <div class="project-stack">
+                      <span class="tag">Python</span>
+                      <span class="tag">AutoCAD automation</span>
+                      <span class="tag">Django</span>
+                      <span class="tag">PostgreSQL</span>
+                    </div>
+                  </article>
+                </div>
+              </section>
+
               <div id="contact">
-                <h1 id="contact-title">Contact me!</h1>
-                <button class="btnMeet" id="github-contact" onclick="window.location.href = 'https://github.com/Giomaster';"><i class="fab fa-github"></i></button>
-                <button class="btnMeet" id="linkedin-contact" onclick="window.location.href = 'https://www.linkedin.com/in/giovanni-martins-762607268/?locale=en_US';"><i class="fab fa-linkedin-in"></i></button>
+                <h2 id="contact-title">Let's talk.</h2>
+                <p id="contact-subtitle">If there's something interesting on the table — a role, a project, a problem worth solving — drop a line.</p>
+                <div id="contact-buttons">
+                  <a class="btnMeet" id="email-contact" href="mailto:giovanni.c.martins@gmail.com" aria-label="Email">
+                    <svg class="icon-large"><use href="#i-mail"/></svg>
+                  </a>
+                  <a class="btnMeet" id="github-contact" href="https://github.com/Giomaster" target="_blank" rel="noopener" aria-label="GitHub">
+                    <svg class="icon-large"><use href="#i-github"/></svg>
+                  </a>
+                  <a class="btnMeet" id="linkedin-contact" href="https://www.linkedin.com/in/giovanni-martins-762607268/?locale=en_US" target="_blank" rel="noopener" aria-label="LinkedIn">
+                    <svg class="icon-large"><use href="#i-linkedin"/></svg>
+                  </a>
+                </div>
               </div>
             </div>
         </div>
@@ -236,7 +315,7 @@
                             <div class="square sq-white" id="e8"></div>
                             <div class="square sq-black" id="f8"></div>
                             <div class="square sq-white" id="g8">
-                                <img src="img/king-bl.png" class="chess-piece" alt="" />
+                                <img src="img/chess-king-dark.svg" class="chess-piece" alt="Black king" />
                             </div>
                             <div class="square sq-black" id="h8"></div>
                             <div class="square sq-black" id="a7"></div>
@@ -254,12 +333,12 @@
                             <div class="square sq-white" id="e6"></div>
                             <div class="square sq-black" id="f6"></div>
                             <div class="square sq-white" id="g6">
-                                <img src="img/king-wh.png" class="chess-piece turnToMove" id="whiteKing" alt="" />
+                                <img src="img/chess-king-light.svg" class="chess-piece turnToMove" id="whiteKing" alt="White king" />
                             </div>
                             <div class="square sq-black" id="h6"></div>
                             <div class="square sq-black" id="a5"></div>
                             <div class="square sq-white" id="b5">
-                                <img src="img/rook-bl.png" class="chess-piece" alt="" />
+                                <img src="img/chess-rook-dark.svg" class="chess-piece" alt="Black rook" />
                             </div>
                             <div class="square sq-black" id="c5"></div>
                             <div class="square sq-white" id="d5"></div>
@@ -280,7 +359,7 @@
                             <div class="square sq-black" id="c3"></div>
                             <div class="square sq-white" id="d3"></div>
                             <div class="square sq-black" id="e3">
-                                <img src="img/rook-wh.png" class="chess-piece turnToMove" id="whiteRook" draggable="false" ontouchstart="Chess.getPiece(this);" onmousedown="Chess.getPiece(this);" ontouchend="Chess.dropPiece();" onmouseup="Chess.dropPiece();"/>
+                                <img src="img/chess-rook-light.svg" class="chess-piece turnToMove" id="whiteRook" alt="White rook" draggable="false" ontouchstart="Chess.getPiece(this);" onmousedown="Chess.getPiece(this);" ontouchend="Chess.dropPiece();" onmouseup="Chess.dropPiece();"/>
                             </div>
                             <div class="square sq-white" id="f3"></div>
                             <div class="square sq-black" id="g3"></div>
@@ -304,14 +383,15 @@
                         </div>
                     </div>
                     <div id="configuration">
-                        <h1>Enable audio?</h1>
-                        <i class="fas fa-headphones"></i>
+                        <h1>Sound on?</h1>
+                        <svg class="icon-large" aria-hidden="true"><use href="#i-headphones"/></svg>
+                        <p id="configuration-hint">Music sets the mood. Up to you.</p>
                         <div id="ConfigurationButtons">
                             <button type="button" class="confBtn" onclick="this.disabled = true; Music.enable(); Transition.settings();">Yes</button>
                             <button type="button" class="confBtn" onclick="this.disabled = true; Transition.settings();">No</button>
                         </div>
-                    </div>     
-                    <button type="button" onclick="this.disabled = true; Transition.intro();" class="btnNarrative" id="btnStartApresentation">Hear...</button>
+                    </div>
+                    <button type="button" onclick="this.disabled = true; Transition.intro();" class="btnNarrative" id="btnStartApresentation">Start the story</button>
                     <span class="task btnNarrative" id="task-chess">solve the puzzle or just <button type="button" onclick="this.disabled = true; Transition.techBeginning();">Move on</button></span>
                 </div>
             </div>
@@ -320,26 +400,14 @@
                     <p class="text" id="techBeginning-text"></p>
                     <p class="notice" id="techBeginning-notice"></p>
                     <div class="show" id="techBeginning-show">
-                        <div id="ctf">
-                            <div id="outputCTF"></div>
-                            <input type="text" id="secretCTF" placeholder="Type the KEY" oninput="Morse.key(this)">
-                            <div id="inputContainerCTF">
-                              <div class="letter-box" onclick="Morse.clickMobile(this)">l</div>
-                              <div class="letter-box" onclick="Morse.clickMobile(this)">t</div>
-                              <div class="letter-box" onclick="Morse.clickMobile(this)">u</div>
-                              <div class="letter-box" onclick="Morse.clickMobile(this)">z</div>
-                              <div class="letter-box" onclick="Morse.clickMobile(this)">a</div>
-                              <div class="letter-box" onclick="Morse.clickMobile(this)">o</div>
-                              <div class="letter-box" onclick="Morse.clickMobile(this)">y</div>
-                              <div class="letter-box" onclick="Morse.clickMobile(this)">p</div>
-                              <div class="letter-box" onclick="Morse.clickMobile(this)">q</div>
-                              <div class="letter-box" onclick="Morse.clickMobile(this)">v</div>
-                              <div class="letter-box" onclick="Morse.clickMobile(this)">m</div>
-                              <div class="letter-box" onclick="Morse.clickMobile(this)">e</div>
-                              <div class="letter-box" onclick="Morse.clickMobile(this)">n</div>
-                              <div class="letter-box" onclick="Morse.clickMobile(this)">x</div>
+                        <div id="anagram">
+                            <div id="anagram-hint">
+                                <span class="anagram-icon" aria-hidden="true">⎈</span>
+                                <span>Unscramble the word — tap the letters in order</span>
                             </div>
-                            <span class="task btnNarrative" id="task-ctf">solve the puzzle or just <button type="button" onclick="this.disabled = true; Transition.actually();">Move on</button></span>
+                            <div id="anagram-slots"></div>
+                            <div id="anagram-pool"></div>
+                            <span class="task btnNarrative" id="task-anagram">solve the puzzle or just <button type="button" onclick="this.disabled = true; Transition.actually();">Move on</button></span>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,129 @@
+#techBeginning {
+  background: linear-gradient(45deg, rgba(255, 96, 43, 1) 0%, rgba(177, 66, 236, 1) 100%);
+}
+
+#techBeginning-show {
+  width: 100%;
+  align-items: center;
+}
+
+#anagram {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+#anagram-hint {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #FFF;
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  margin-bottom: 26px;
+  opacity: 0.85;
+}
+
+.anagram-icon {
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+#anagram-slots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  max-width: 640px;
+  margin-bottom: 36px;
+}
+
+.anagram-slot {
+  width: 42px;
+  height: 54px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+  font-size: 1.6rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: border-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+.anagram-slot.filled {
+  border-color: #FFF;
+}
+
+.anagram-slot.filled:hover {
+  transform: translateY(-3px);
+}
+
+#anagram-slots.solved .anagram-slot {
+  border-color: #0AFF9D;
+  color: #0AFF9D;
+  pointer-events: none;
+}
+
+#anagram-slots.wrong {
+  animation: anagram-shake 0.45s ease-in-out;
+}
+
+@keyframes anagram-shake {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-10px); }
+  40%      { transform: translateX(10px); }
+  60%      { transform: translateX(-6px); }
+  80%      { transform: translateX(6px); }
+}
+
+#anagram-pool {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  max-width: 640px;
+}
+
+.anagram-tile {
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background-color: rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #F5F5F5;
+  font-size: 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.25s, transform 0.2s, opacity 0.25s, border-color 0.25s;
+  user-select: none;
+}
+
+.anagram-tile:hover {
+  background-color: rgba(255, 255, 255, 0.28);
+  transform: translateY(-3px);
+  border-color: #FFF;
+}
+
+.anagram-tile.used {
+  opacity: 0.18;
+  pointer-events: none;
+  transform: scale(0.92);
+}
+
+@media screen and (max-width: 600px) {
+  .anagram-slot { width: 28px; height: 42px; font-size: 1.2rem; }
+  .anagram-tile { width: 38px; height: 38px; font-size: 1rem; }
+  #anagram-hint { font-size: 0.9rem; }
+  .anagram-icon { font-size: 1.8rem; }
+}

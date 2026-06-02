@@ -9,8 +9,7 @@
 }
 
 #whiteRook {
-  background: url(../img/rook-wh.png);
-  background-size: contain;
+  background: url(../img/chess-rook-light.svg) center / contain no-repeat;
   background-color: transparent;
 }
 
